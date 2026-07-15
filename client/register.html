@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | Panoply</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="logo">
+            <a href="index.html" style="color: inherit; text-decoration: none;">
+                Panoply
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#">Services</a>
+            <a href="login.html" class="login-btn">Login</a>
+        </div>
+
+    </nav>
+
+    <!-- Register Section -->
+    <section class="auth-container">
+
+        <div class="auth-card">
+
+            <h1>Create Your Account 🚀</h1>
+
+            <p>
+                Join Panoply and start connecting with trusted home service professionals.
+            </p>
+
+            <form id="registerForm">
+
+                <div class="input-group">
+                    <label for="fullName">Full Name</label>
+                    <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        placeholder="John Doe"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="john@example.com"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="+234 XXX XXX XXXX"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="role">Register As</label>
+
+                    <select id="role" name="role" required>
+
+                        <option value="">Select an option</option>
+                        <option value="customer">Customer</option>
+                        <option value="provider">Service Provider</option>
+
+                    </select>
+
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Create a password"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Confirm your password"
+                        required
+                    >
+                </div>
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                    style="width:100%; border:none; cursor:pointer;"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+            <div class="auth-footer">
+
+                <p>
+                    Already have an account?
+
+                    <a href="login.html">
+                        Login here
+                    </a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <script src="js/register.js"></script>
+
+</body>
+</html>
