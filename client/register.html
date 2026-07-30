@@ -1,145 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create Account | Panoply</title>
-
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Create account — Panoply</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
+<nav>
+  <a href="index.html" class="logo">pan<em>oply</em></a>
+  <a href="login.html" class="nav-link">Already have an account? <span>Log in</span></a>
+</nav>
 
-        <div class="logo">
-            <a href="index.html" style="color: inherit; text-decoration: none;">
-                Panoply
-            </a>
+<div class="stepbar">
+  <div class="sbar-step active" id="sbar1">
+    <div class="sbar-num">1</div>
+    <div class="sbar-label">Choose role</div>
+  </div>
+  <div class="sbar-line"></div>
+  <div class="sbar-step" id="sbar2">
+    <div class="sbar-num">2</div>
+    <div class="sbar-label">Your details</div>
+  </div>
+  <div class="sbar-line"></div>
+  <div class="sbar-step" id="sbar3">
+    <div class="sbar-num">3</div>
+    <div class="sbar-label">Set password</div>
+  </div>
+</div>
+
+<main>
+  <div class="reg-wrap">
+    <div class="prog-bar"><div class="prog-fill" id="prog" style="width:33%"></div></div>
+
+    <!-- STEP 1: Role -->
+    <div class="step-panel active" id="step1">
+      <div class="step-head">
+        <h1>Join <em>Panoply.</em></h1>
+        <p>How do you want to use the platform?</p>
+      </div>
+      <div class="role-pick">
+        <div class="role-card selected" onclick="selectRole(this,'customer')">
+          <div class="role-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="role-text"><h3>Customer</h3><p>Book verified artisans for home services</p></div>
+          <div class="role-radio"></div>
         </div>
-
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="#">Services</a>
-            <a href="login.html" class="login-btn">Login</a>
+        <div class="role-card" onclick="selectRole(this,'artisan')">
+          <div class="role-icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <div class="role-text"><h3>Artisan</h3><p>Get matched to nearby jobs in your trade</p></div>
+          <div class="role-radio"></div>
         </div>
+      </div>
+      <button class="btn-submit" onclick="goStep(2)">Continue →</button>
+      <div class="form-foot"><a href="index.html">← Back to home</a></div>
+    </div>
 
-    </nav>
+    <!-- STEP 2: Details -->
+    <div class="step-panel" id="step2">
+      <div class="step-head">
+        <h1><em>Tell us</em> about yourself.</h1>
+        <p>Fill in your basic information to get started.</p>
+      </div>
+      <div class="field-2col">
+        <div class="field"><label>First name</label><input type="text" placeholder="Emeka" id="fname"/></div>
+        <div class="field"><label>Last name</label><input type="text" placeholder="Okafor" id="lname"/></div>
+      </div>
+      <div class="field"><label>Email address</label><input type="email" placeholder="you@example.com" id="email"/></div>
+      <div class="field"><label>Phone number</label><input type="tel" placeholder="+234 800 000 0000" id="phone"/></div>
+      <div class="field"><label>State</label>
+        <select id="state">
+          <option value="">Select your state</option>
+          <option>Abuja (FCT)</option><option>Abia</option><option>Adamawa</option>
+          <option>Akwa Ibom</option><option>Anambra</option><option>Bauchi</option>
+          <option>Bayelsa</option><option>Benue</option><option>Borno</option>
+          <option>Cross River</option><option>Delta</option><option>Ebonyi</option>
+          <option>Edo</option><option>Ekiti</option><option>Enugu</option>
+          <option>Gombe</option><option>Imo</option><option>Jigawa</option>
+          <option>Kaduna</option><option>Kano</option><option>Katsina</option>
+          <option>Kebbi</option><option>Kogi</option><option>Kwara</option>
+          <option>Lagos</option><option>Nasarawa</option><option>Niger</option>
+          <option>Ogun</option><option>Ondo</option><option>Osun</option>
+          <option>Oyo</option><option>Plateau</option><option>Rivers</option>
+          <option>Sokoto</option><option>Taraba</option><option>Yobe</option><option>Zamfara</option>
+        </select>
+      </div>
+      <div class="field artisan-field" style="display:none"><label>Trade / service category</label>
+        <select id="trade">
+          <option value="">Select your trade</option>
+          <option>Plumbing</option><option>Electrical</option><option>AC Repair</option>
+          <option>Cleaning</option><option>Carpentry</option><option>Generator Repair</option>
+          <option>Solar & Inverter</option><option>Painting</option>
+        </select>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(1)">Back</button>
+        <button class="btn-submit" onclick="goStep(3)">Continue →</button>
+      </div>
+    </div>
 
-    <!-- Register Section -->
-    <section class="auth-container">
-
-        <div class="auth-card">
-
-            <h1>Create Your Account 🚀</h1>
-
-            <p>
-                Join Panoply and start connecting with trusted home service professionals.
-            </p>
-
-            <form id="registerForm">
-
-                <div class="input-group">
-                    <label for="fullName">Full Name</label>
-                    <input
-                        type="text"
-                        id="fullName"
-                        name="fullName"
-                        placeholder="John Doe"
-                        required
-                    >
-                </div>
-
-                <div class="input-group">
-                    <label for="email">Email Address</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="john@example.com"
-                        required
-                    >
-                </div>
-
-                <div class="input-group">
-                    <label for="phone">Phone Number</label>
-                    <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        placeholder="+234 XXX XXX XXXX"
-                        required
-                    >
-                </div>
-
-                <div class="input-group">
-                    <label for="role">Register As</label>
-
-                    <select id="role" name="role" required>
-
-                        <option value="">Select an option</option>
-                        <option value="customer">Customer</option>
-                        <option value="provider">Service Provider</option>
-
-                    </select>
-
-                </div>
-
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Create a password"
-                        required
-                    >
-                </div>
-
-                <div class="input-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        placeholder="Confirm your password"
-                        required
-                    >
-                </div>
-
-                <button
-                    type="submit"
-                    class="primary-btn"
-                    style="width:100%; border:none; cursor:pointer;"
-                >
-                    Create Account
-                </button>
-
-            </form>
-
-            <div class="auth-footer">
-
-                <p>
-                    Already have an account?
-
-                    <a href="login.html">
-                        Login here
-                    </a>
-                </p>
-
-            </div>
-
+    <!-- STEP 3: Password -->
+    <div class="step-panel" id="step3">
+      <div class="step-head">
+        <h1><em>Secure</em> your account.</h1>
+        <p>Choose a strong password to protect your Panoply account.</p>
+      </div>
+      <div class="field">
+        <label>Password</label>
+        <div class="pw-wrap">
+          <input type="password" id="pw1" placeholder="Min. 8 characters"/>
+          <button class="pw-toggle" onclick="togglePw('pw1')" aria-label="Toggle">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
         </div>
+        <div class="hint">Use at least 8 characters with a mix of letters and numbers</div>
+      </div>
+      <div class="field">
+        <label>Confirm password</label>
+        <div class="pw-wrap">
+          <input type="password" id="pw2" placeholder="Repeat your password"/>
+          <button class="pw-toggle" onclick="togglePw('pw2')" aria-label="Toggle">
+            <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="terms-check">
+        <input type="checkbox" id="terms"/>
+        <label for="terms">I agree to Panoply's <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+      </div>
+      <div class="btn-row">
+        <button class="btn-back" onclick="goStep(2)">Back</button>
+        <button class="btn-submit" onclick="handleSubmit()">Create account</button>
+      </div>
+    </div>
 
-    </section>
+    <!-- SUCCESS -->
+    <div class="step-panel" id="step4">
+      <div class="success-screen">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2>You're <em>in.</em></h2>
+        <p>Your Panoply account has been created. You can now book verified artisans or start receiving jobs.</p>
+        <button class="btn-submit" style="max-width:280px;margin:0 auto;display:block" onclick="window.location.href='login.html'">Go to dashboard →</button>
+      </div>
+    </div>
 
-    <script src="js/register.js"></script>
-
+  </div>
+</main>
+<script src="js/register.js"></script>
 </body>
 </html>

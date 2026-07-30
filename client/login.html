@@ -1,113 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Panoply</title>
-
-    <!-- Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Log in — Panoply</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar">
+<div class="left">
+  <a href="index.html" class="logo">pan<em>oply</em></a>
+  <div class="left-glow"></div>
+  <div class="left-mid">
+    <h2>Good to have<br/><em>you back.</em></h2>
+    <p>Every job you book is tracked, every provider is verified, and every review is real.</p>
+  </div>
+  <div class="quote-card">
+    <div class="quote-mark">"</div>
+    <p>Found a verified electrician within minutes. Job tracked from start to finish. No surprises, no excuses.</p>
+    <div class="quote-author">
+      <div class="avatar">KA</div>
+      <div>
+        <div class="author-name">Kunle A.</div>
+        <div class="author-loc">Customer · Abuja</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <div class="logo">
-            <a href="index.html" style="color: inherit;">Panoply</a>
-        </div>
+<div class="right">
+  <div class="form-wrap">
+    <div class="form-top">
+      <h1>Log <em>in.</em></h1>
+      <p>No account yet? <a href="register.html">Create one free</a></p>
+    </div>
 
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="#">Services</a>
-            <a href="register.html" class="register-btn">Create Account</a>
-        </div>
+    <div class="role-tabs">
+      <button class="rtab active" onclick="setRole(this)">Customer</button>
+      <button class="rtab" onclick="setRole(this)">Artisan</button>
+      <button class="rtab" onclick="setRole(this)">Admin</button>
+    </div>
 
-    </nav>
+    <div class="field">
+      <label for="email">Email address</label>
+      <input type="email" id="email" placeholder="you@example.com" autocomplete="email"/>
+    </div>
 
-    <!-- Login Section -->
-    <section class="auth-container">
+    <div class="field">
+      <div class="field-row">
+        <label for="password">Password</label>
+        <a href="#">Forgot password?</a>
+      </div>
+      <div class="pw-wrap">
+        <input type="password" id="password" placeholder="••••••••" autocomplete="current-password"/>
+        <button class="pw-toggle" onclick="togglePw()" aria-label="Toggle password visibility">
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+      </div>
+    </div>
 
-        <div class="auth-card">
+    <button class="btn-submit" onclick="handleLogin()">Log in to Panoply</button>
 
-            <h1>Welcome Back 👋</h1>
+    <div class="form-foot">
+      <a href="index.html">← Back to home</a>
+    </div>
+  </div>
+</div>
 
-            <p>
-                Sign in to continue managing your bookings and connect with trusted professionals.
-            </p>
-
-            <form id="loginForm">
-
-                <div class="input-group">
-                    <label for="email">Email Address</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="Enter your email"
-                        required
-                    >
-                </div>
-
-                <div class="input-group">
-                    <label for="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        required
-                    >
-                </div>
-
-                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:25px;">
-
-                    <label style="display:flex; align-items:center; gap:8px; font-size:.95rem; color:#64748b;">
-
-                        <input type="checkbox">
-
-                        Remember Me
-
-                    </label>
-
-                    <a href="#" style="color:#2563eb; font-weight:600;">
-                        Forgot Password?
-                    </a>
-
-                </div>
-
-                <button
-                    type="submit"
-                    class="primary-btn"
-                    style="width:100%; border:none; cursor:pointer;"
-                >
-                    Login
-                </button>
-
-            </form>
-
-            <div class="auth-footer">
-
-                <p>
-                    Don't have an account?
-
-                    <a href="register.html">
-                        Create one here
-                    </a>
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-    <script src="js/login.js"></script>
-
+<script src="js/login.js"></script>
 </body>
 </html>

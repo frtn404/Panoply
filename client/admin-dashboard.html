@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Admin — Panoply</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sb-logo">
+    <a href="index.html">pan<em>oply</em></a>
+    <div class="sb-badge">Admin</div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section-label">Overview</div>
+    <a href="admin-dashboard.html" class="sb-link active">
+      <div class="sb-link-inner"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</div>
+    </a>
+    <div class="sb-section-label">Moderation</div>
+    <a href="#" class="sb-link">
+      <div class="sb-link-inner"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Providers</div>
+      <span class="sb-badge-count">4</span>
+    </a>
+    <a href="#" class="sb-link">
+      <div class="sb-link-inner"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>All jobs</div>
+    </a>
+    <a href="#" class="sb-link">
+      <div class="sb-link-inner"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Disputes</div>
+      <span class="sb-badge-count">2</span>
+    </a>
+    <a href="#" class="sb-link">
+      <div class="sb-link-inner"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Reviews</div>
+    </a>
+    <div class="sb-section-label">Platform</div>
+    <a href="#" class="sb-link">
+      <div class="sb-link-inner"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</div>
+    </a>
+    <a href="#" class="sb-link">
+      <div class="sb-link-inner"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings</div>
+    </a>
+  </nav>
+  <div class="sb-bottom">
+    <div class="sb-admin-info">
+      <div class="sb-avatar">AD</div>
+      <div><p>Admin User</p><p>Super admin</p></div>
+    </div>
+    <button class="sb-logout" onclick="window.location.href='login.html'">
+      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out
+    </button>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <h1>Admin <em>control panel</em></h1>
+    <div class="topbar-right">
+      <div class="search-bar">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search users, jobs, providers…"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-card-label">Total users</div>
+        <div class="stat-card-val">1,284</div>
+        <div class="stat-card-sub"><span class="up">↑ 34</span> this week</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Active providers</div>
+        <div class="stat-card-val">86</div>
+        <div class="stat-card-sub"><span class="up">↑ 7</span> new this month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Jobs today</div>
+        <div class="stat-card-val">42</div>
+        <div class="stat-card-sub"><span class="up">↑ 8%</span> vs yesterday</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Pending approval</div>
+        <div class="stat-card-val" style="color:var(--amber)">4</div>
+        <div class="stat-card-sub">Providers awaiting review</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Open disputes</div>
+        <div class="stat-card-val" style="color:var(--red)">2</div>
+        <div class="stat-card-sub"><span class="down">Needs attention</span></div>
+      </div>
+    </div>
+
+    <!-- ALERTS -->
+    <div class="alerts">
+      <div class="alert urgent">
+        <div class="alert-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <div class="alert-text"><span>Dispute #D-004</span> — Customer reports provider abandoned job mid-way, Abuja</div>
+        <div class="alert-time">12 mins ago</div>
+        <a href="#" class="alert-action">Review</a>
+      </div>
+      <div class="alert warn">
+        <div class="alert-icon"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+        <div class="alert-text"><span>4 providers</span> pending identity verification — approval queue is growing</div>
+        <div class="alert-time">1 hour ago</div>
+        <a href="#" class="alert-action">Verify</a>
+      </div>
+    </div>
+
+    <!-- THREE COL -->
+    <div class="three-col">
+      <!-- PROVIDER MODERATION -->
+      <div class="section-card">
+        <div class="section-head"><h2>Provider moderation</h2><a href="#" class="see-all">See all →</a></div>
+        <div class="provider-row-item">
+          <div class="p-avi" style="background:var(--amber-dim);color:var(--amber)">FK</div>
+          <div class="p-info"><h4>Fatima Kalu</h4><p>Plumber · Submitted 2h ago</p></div>
+          <div class="p-status p-pending">Pending</div>
+          <div class="p-actions">
+            <button class="p-btn approve" onclick="alert('Provider approved!')">Approve</button>
+            <button class="p-btn suspend" onclick="alert('Provider rejected.')">Reject</button>
+          </div>
+        </div>
+        <div class="provider-row-item">
+          <div class="p-avi">BA</div>
+          <div class="p-info"><h4>Bayo Adewale</h4><p>Electrician · Submitted 5h ago</p></div>
+          <div class="p-status p-pending">Pending</div>
+          <div class="p-actions">
+            <button class="p-btn approve" onclick="alert('Provider approved!')">Approve</button>
+            <button class="p-btn suspend" onclick="alert('Provider rejected.')">Reject</button>
+          </div>
+        </div>
+        <div class="provider-row-item">
+          <div class="p-avi" style="background:var(--green-dim);color:var(--green)">TJ</div>
+          <div class="p-info"><h4>Tunde Jimoh</h4><p>Electrician · 23 jobs · ★ 4.8</p></div>
+          <div class="p-status p-verified">Verified</div>
+          <div class="p-actions">
+            <button class="p-btn" onclick="alert('Profile viewed.')">View</button>
+            <button class="p-btn suspend" onclick="alert('Provider suspended.')">Suspend</button>
+          </div>
+        </div>
+        <div class="provider-row-item">
+          <div class="p-avi" style="background:var(--red-dim);color:var(--red)">ME</div>
+          <div class="p-info"><h4>Mike Ezeh</h4><p>Carpenter · 3 complaints</p></div>
+          <div class="p-status p-suspended">Suspended</div>
+          <div class="p-actions">
+            <button class="p-btn" onclick="alert('Profile viewed.')">View</button>
+            <button class="p-btn approve" onclick="alert('Provider reinstated.')">Reinstate</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE JOBS -->
+      <div class="section-card">
+        <div class="section-head"><h2>Live jobs now</h2><a href="#" class="see-all">All →</a></div>
+        <div class="live-job">
+          <div class="live-dot"></div>
+          <div class="live-job-info"><h4>Electrical fault repair</h4><p>Emeka O. + Tunde J. · Wuse 2</p></div>
+          <div class="live-job-status">In progress</div>
+        </div>
+        <div class="live-job">
+          <div class="live-dot"></div>
+          <div class="live-job-info"><h4>AC installation</h4><p>Ngozi A. + CoolTech · Maitama</p></div>
+          <div class="live-job-status">In progress</div>
+        </div>
+        <div class="live-job">
+          <div class="live-dot"></div>
+          <div class="live-job-info"><h4>Deep home cleaning</h4><p>Bola K. + FreshSpace · Garki</p></div>
+          <div class="live-job-status">In progress</div>
+        </div>
+        <div class="live-job">
+          <div class="live-dot" style="background:var(--amber)"></div>
+          <div class="live-job-info"><h4>Plumbing repair</h4><p>Chidi M. — awaiting provider</p></div>
+          <div class="live-job-status" style="color:var(--amber)">Matching…</div>
+        </div>
+        <div class="live-job">
+          <div class="live-dot"></div>
+          <div class="live-job-info"><h4>Generator servicing</h4><p>Amaka O. + PowerFix Co. · Asokoro</p></div>
+          <div class="live-job-status">In progress</div>
+        </div>
+      </div>
+
+      <!-- PLATFORM HEALTH -->
+      <div class="section-card">
+        <div class="section-head"><h2>Platform health</h2></div>
+        <div class="health-items">
+          <div class="health-item">
+            <div class="health-label-row"><span class="health-label">Job completion rate</span><span class="health-val">94%</span></div>
+            <div class="health-track"><div class="health-fill" style="width:94%;background:var(--green)"></div></div>
+          </div>
+          <div class="health-item">
+            <div class="health-label-row"><span class="health-label">Avg. match time</span><span class="health-val">3.2 min</span></div>
+            <div class="health-track"><div class="health-fill" style="width:75%;background:var(--amber)"></div></div>
+          </div>
+          <div class="health-item">
+            <div class="health-label-row"><span class="health-label">Provider availability</span><span class="health-val">78%</span></div>
+            <div class="health-track"><div class="health-fill" style="width:78%;background:var(--blue)"></div></div>
+          </div>
+          <div class="health-item">
+            <div class="health-label-row"><span class="health-label">Dispute rate</span><span class="health-val">2.1%</span></div>
+            <div class="health-track"><div class="health-fill" style="width:21%;background:var(--red)"></div></div>
+          </div>
+          <div class="health-item">
+            <div class="health-label-row"><span class="health-label">Avg. review score</span><span class="health-val">4.7 / 5</span></div>
+            <div class="health-track"><div class="health-fill" style="width:94%;background:var(--amber)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>My Dashboard — Panoply</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sb-logo"><a href="index.html">pan<em>oply</em></a></div>
+  <div class="sb-user">
+    <div class="sb-avatar">EO</div>
+    <div class="sb-user-info">
+      <p>Emeka Okafor</p>
+      <p>Customer</p>
+    </div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section-label">Main</div>
+    <a href="customer-dashboard.html" class="sb-link active">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard
+    </a>
+    <a href="booking.html" class="sb-link">
+      <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Book a service
+    </a>
+    <a href="#" class="sb-link">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>My jobs
+    </a>
+    <a href="#" class="sb-link">
+      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages
+    </a>
+    <div class="sb-section-label">Account</div>
+    <a href="#" class="sb-link">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile
+    </a>
+    <a href="#" class="sb-link">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings
+    </a>
+  </nav>
+  <div class="sb-bottom">
+    <a href="login.html" class="sb-logout">
+      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out
+    </a>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left">
+      <h1>Good afternoon, <em>Emeka.</em></h1>
+    </div>
+    <div class="topbar-right">
+      <button class="notif-btn" aria-label="Notifications">
+        <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="notif-dot"></span>
+      </button>
+      <a href="booking.html" class="btn-book">+ Book a service</a>
+    </div>
+  </div>
+
+  <div class="page">
+    <!-- STATS -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-card-label">Total jobs</div>
+        <div class="stat-card-val">12</div>
+        <div class="stat-card-sub"><span>↑ 3</span> this month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Active now</div>
+        <div class="stat-card-val">1</div>
+        <div class="stat-card-sub">In progress</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Completed</div>
+        <div class="stat-card-val">10</div>
+        <div class="stat-card-sub"><span>↑ 2</span> this month</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Avg. rating given</div>
+        <div class="stat-card-val">4.6</div>
+        <div class="stat-card-sub">Across all jobs</div>
+      </div>
+    </div>
+
+    <!-- ACTIVE JOB -->
+    <div class="active-job">
+      <div class="active-job-top">
+        <div>
+          <div class="active-job-tag">● Live job</div>
+          <h3 style="margin-top:0.6rem">Electrical fault repair — <em>In progress</em></h3>
+          <div class="active-job-meta">Booked today · Estimated completion 4:30 PM</div>
+        </div>
+        <a href="#" class="msg-btn">View details</a>
+      </div>
+      <div class="progress-track">
+        <div class="progress-steps">
+          <div class="prog-step done">
+            <div class="prog-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="prog-label">Requested</div>
+          </div>
+          <div class="prog-step done">
+            <div class="prog-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="prog-label">Matched</div>
+          </div>
+          <div class="prog-step done">
+            <div class="prog-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="prog-label">Accepted</div>
+          </div>
+          <div class="prog-step current">
+            <div class="prog-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/></svg></div>
+            <div class="prog-label">In progress</div>
+          </div>
+          <div class="prog-step">
+            <div class="prog-dot"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div class="prog-label">Completed</div>
+          </div>
+        </div>
+      </div>
+      <div class="provider-row">
+        <div class="provider-info">
+          <div class="p-avatar">TJ</div>
+          <div>
+            <div class="p-name">Tunde Jimoh</div>
+            <div class="p-trade">Electrician · 2.4 km away</div>
+          </div>
+        </div>
+        <div class="p-rating">
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          4.8
+        </div>
+        <button class="msg-btn">Message</button>
+      </div>
+    </div>
+
+    <!-- TWO COLUMN -->
+    <div class="two-col">
+      <!-- JOB HISTORY -->
+      <div class="section-card">
+        <div class="section-head">
+          <h2>Recent jobs</h2>
+          <a href="#" class="see-all">See all →</a>
+        </div>
+        <div class="job-item">
+          <div class="job-icon electrical"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <div class="job-info"><h4>Socket replacement</h4><p>Tunde J. · 3 days ago</p></div>
+          <div class="job-status status-done">Completed</div>
+        </div>
+        <div class="job-item">
+          <div class="job-icon plumbing"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+          <div class="job-info"><h4>Pipe leak repair</h4><p>Chukwu A. · 1 week ago</p></div>
+          <div class="job-status status-done">Completed</div>
+        </div>
+        <div class="job-item">
+          <div class="job-icon cleaning"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+          <div class="job-info"><h4>Deep home cleaning</h4><p>FreshSpace Co. · 2 weeks ago</p></div>
+          <div class="job-status status-done">Completed</div>
+        </div>
+        <div class="job-item">
+          <div class="job-icon ac"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+          <div class="job-info"><h4>AC gas refill</h4><p>CoolTech Ltd. · 3 weeks ago</p></div>
+          <div class="job-status status-cancelled">Cancelled</div>
+        </div>
+      </div>
+
+      <!-- RIGHT COL -->
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+        <!-- QUICK BOOK -->
+        <div class="section-card">
+          <div class="section-head"><h2>Quick book</h2></div>
+          <div class="quick-grid">
+            <a href="booking.html" class="quick-item">
+              <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+              <span>Plumbing</span>
+            </a>
+            <a href="booking.html" class="quick-item">
+              <svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+              <span>Electrical</span>
+            </a>
+            <a href="booking.html" class="quick-item">
+              <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+              <span>AC Repair</span>
+            </a>
+            <a href="booking.html" class="quick-item">
+              <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+              <span>Cleaning</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- NEARBY -->
+        <div class="section-card">
+          <div class="section-head"><h2>Top rated nearby</h2><a href="booking.html" class="see-all">Book →</a></div>
+          <div class="sug-item">
+            <div class="sug-icon" style="background:var(--blue-dim)"><svg viewBox="0 0 24 24" style="stroke:var(--blue)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div class="sug-info"><h4>Tunde Jimoh</h4><p>Electrician · ★ 4.8 · 1.2 km</p></div>
+            <span class="sug-arrow">→</span>
+          </div>
+          <div class="sug-item">
+            <div class="sug-icon" style="background:var(--green-dim)"><svg viewBox="0 0 24 24" style="stroke:var(--green)"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+            <div class="sug-info"><h4>Chukwu Eze</h4><p>Plumber · ★ 4.7 · 2.1 km</p></div>
+            <span class="sug-arrow">→</span>
+          </div>
+          <div class="sug-item">
+            <div class="sug-icon" style="background:var(--amber-dim)"><svg viewBox="0 0 24 24" style="stroke:var(--amber)"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+            <div class="sug-info"><h4>FreshSpace Co.</h4><p>Cleaning · ★ 4.9 · 3.4 km</p></div>
+            <span class="sug-arrow">→</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
