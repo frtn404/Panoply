@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Booking History — Panoply</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="dash-body">
+
+<aside class="sidebar">
+  <div class="sb-logo"><a href="index.html">pan<em>oply</em></a></div>
+  <div class="sb-user">
+    <div class="sb-avatar amber">EO</div>
+    <div class="sb-user-info"><p>Emeka Okafor</p><p>Customer</p></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section-label">Main</div>
+    <a href="customer-dashboard.html" class="sb-link"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a>
+    <a href="booking.html" class="sb-link"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Book a service</a>
+    <a href="booking-history.html" class="sb-link active"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>My jobs</a>
+    <a href="#" class="sb-link"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages</a>
+    <div class="sb-section-label">Account</div>
+    <a href="profile.html" class="sb-link"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+    <a href="settings.html" class="sb-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings</a>
+  </nav>
+  <div class="sb-bottom"><a href="login.html" class="sb-logout"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out</a></div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left"><h1>My <em>jobs</em></h1></div>
+    <div class="topbar-right"><a href="booking.html" class="btn-book">+ Book a service</a></div>
+  </div>
+
+  <div class="inner-page wide">
+    <div class="page-header-row">
+      <div class="page-header">
+        <h1>Booking <em>history</em></h1>
+        <p>12 total jobs · 10 completed · 1 active · 1 cancelled</p>
+      </div>
+    </div>
+
+    <div class="history-filters">
+      <button class="filter-btn active" onclick="filterJobs(this,'all')">All jobs</button>
+      <button class="filter-btn" onclick="filterJobs(this,'active')">Active</button>
+      <button class="filter-btn" onclick="filterJobs(this,'completed')">Completed</button>
+      <button class="filter-btn" onclick="filterJobs(this,'cancelled')">Cancelled</button>
+      <div class="history-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" placeholder="Search jobs…" oninput="searchJobs(this.value)"/>
+      </div>
+    </div>
+
+    <div class="history-list" id="history-list">
+      <div class="history-card" data-status="active" data-title="Electrical fault repair">
+        <div class="history-card-icon" style="background:var(--blue-dim)"><svg viewBox="0 0 24 24" style="stroke:var(--blue)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div class="history-card-info">
+          <h3>Electrical fault repair</h3>
+          <p>Tunde Jimoh · Wuse 2, Abuja</p>
+        </div>
+        <div class="history-card-right">
+          <div class="history-card-date">Today</div>
+          <div class="job-status status-progress">In progress</div>
+        </div>
+      </div>
+
+      <div class="history-card" data-status="completed" data-title="Socket replacement">
+        <div class="history-card-icon" style="background:var(--blue-dim)"><svg viewBox="0 0 24 24" style="stroke:var(--blue)"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div class="history-card-info">
+          <h3>Socket replacement</h3>
+          <p>Tunde Jimoh · Wuse 2, Abuja</p>
+        </div>
+        <div class="history-card-right">
+          <div class="history-card-date">3 days ago</div>
+          <div class="job-status status-done">Completed</div>
+          <div class="history-card-rating"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>5.0</div>
+        </div>
+      </div>
+
+      <div class="history-card" data-status="completed" data-title="Pipe leak repair">
+        <div class="history-card-icon" style="background:var(--green-dim)"><svg viewBox="0 0 24 24" style="stroke:var(--green)"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div class="history-card-info">
+          <h3>Pipe leak repair</h3>
+          <p>Chukwu Eze · Garki, Abuja</p>
+        </div>
+        <div class="history-card-right">
+          <div class="history-card-date">1 week ago</div>
+          <div class="job-status status-done">Completed</div>
+          <div class="history-card-rating"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.0</div>
+        </div>
+      </div>
+
+      <div class="history-card" data-status="completed" data-title="Deep home cleaning">
+        <div class="history-card-icon" style="background:var(--amber-dim)"><svg viewBox="0 0 24 24" style="stroke:var(--amber)"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></div>
+        <div class="history-card-info">
+          <h3>Deep home cleaning</h3>
+          <p>FreshSpace Co. · Maitama, Abuja</p>
+        </div>
+        <div class="history-card-right">
+          <div class="history-card-date">2 weeks ago</div>
+          <div class="job-status status-done">Completed</div>
+          <div class="history-card-rating"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>5.0</div>
+        </div>
+      </div>
+
+      <div class="history-card" data-status="cancelled" data-title="AC gas refill">
+        <div class="history-card-icon" style="background:var(--purple-dim)"><svg viewBox="0 0 24 24" style="stroke:var(--purple)"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg></div>
+        <div class="history-card-info">
+          <h3>AC gas refill</h3>
+          <p>CoolTech Ltd. · Asokoro, Abuja</p>
+        </div>
+        <div class="history-card-right">
+          <div class="history-card-date">3 weeks ago</div>
+          <div class="job-status status-cancelled">Cancelled</div>
+        </div>
+      </div>
+
+      <div class="history-card" data-status="completed" data-title="Generator servicing">
+        <div class="history-card-icon" style="background:var(--amber-dim)"><svg viewBox="0 0 24 24" style="stroke:var(--amber)"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
+        <div class="history-card-info">
+          <h3>Generator servicing</h3>
+          <p>PowerFix Co. · Wuse 2, Abuja</p>
+        </div>
+        <div class="history-card-right">
+          <div class="history-card-date">1 month ago</div>
+          <div class="job-status status-done">Completed</div>
+          <div class="history-card-rating"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>4.5</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination">
+      <button class="page-btn"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="page-btn active">1</button>
+      <button class="page-btn">2</button>
+      <button class="page-btn"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+</div>
+
+<script src="booking-history.js" defer></script>
+</body>
+</html>

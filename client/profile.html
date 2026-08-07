@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>My Profile — Panoply</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="dash-body">
+
+<aside class="sidebar">
+  <div class="sb-logo"><a href="index.html">pan<em>oply</em></a></div>
+  <div class="sb-user">
+    <div class="sb-avatar amber">EO</div>
+    <div class="sb-user-info"><p>Emeka Okafor</p><p>Customer</p></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section-label">Main</div>
+    <a href="customer-dashboard.html" class="sb-link"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a>
+    <a href="booking.html" class="sb-link"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Book a service</a>
+    <a href="booking-history.html" class="sb-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>My jobs</a>
+    <a href="#" class="sb-link"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages</a>
+    <div class="sb-section-label">Account</div>
+    <a href="profile.html" class="sb-link active"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+    <a href="settings.html" class="sb-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings</a>
+  </nav>
+  <div class="sb-bottom"><a href="login.html" class="sb-logout"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out</a></div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left"><h1>My <em>profile</em></h1></div>
+    <div class="topbar-right"><a href="edit-profile.html" class="btn-book">Edit profile</a></div>
+  </div>
+
+  <div class="inner-page">
+    <div class="profile-hero">
+      <div class="profile-hero-inner">
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar">E</div>
+          <a href="edit-profile.html" class="avatar-edit-btn">
+            <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+          </a>
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">Emeka <em>Okafor</em></div>
+          <div class="profile-role-badge">Customer</div>
+          <div class="profile-meta-list">
+            <div class="profile-meta-item"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>emeka@example.com</div>
+            <div class="profile-meta-item"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.56 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.29 6.29l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 17.92z"/></svg>+234 812 345 6789</div>
+            <div class="profile-meta-item"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Abuja, Nigeria</div>
+            <div class="profile-meta-item"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Joined March 2025</div>
+          </div>
+          <div class="profile-actions">
+            <a href="edit-profile.html" class="btn-amber" style="font-size:0.82rem;padding:0.4rem 1rem">Edit profile</a>
+            <a href="reviews.html" class="btn-ghost" style="font-size:0.82rem;padding:0.4rem 1rem">My reviews</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-stats-row">
+      <div class="stat-card">
+        <div class="stat-card-label">Total jobs</div>
+        <div class="stat-card-val">12</div>
+        <div class="stat-card-sub">Since joining</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Avg. rating given</div>
+        <div class="stat-card-val">4.6</div>
+        <div class="stat-card-sub">Across all reviews</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Favourite service</div>
+        <div class="stat-card-val" style="font-size:1.2rem;padding-top:0.25rem">Electrical</div>
+        <div class="stat-card-sub">5 bookings</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head"><h2>Recent activity</h2><a href="booking-history.html" class="see-all">See all →</a></div>
+      <div class="job-item">
+        <div class="job-icon electrical"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div class="job-info"><h4>Electrical fault repair</h4><p>Today · In progress</p></div>
+        <div class="job-status status-progress">Active</div>
+      </div>
+      <div class="job-item">
+        <div class="job-icon electrical"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div class="job-info"><h4>Socket replacement</h4><p>3 days ago · Tunde Jimoh</p></div>
+        <div class="job-status status-done">Completed</div>
+      </div>
+      <div class="job-item">
+        <div class="job-icon plumbing"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div class="job-info"><h4>Pipe leak repair</h4><p>1 week ago · Chukwu Eze</p></div>
+        <div class="job-status status-done">Completed</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

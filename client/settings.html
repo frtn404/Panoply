@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Settings — Panoply</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body class="dash-body">
+
+<aside class="sidebar">
+  <div class="sb-logo"><a href="index.html">pan<em>oply</em></a></div>
+  <div class="sb-user">
+    <div class="sb-avatar amber">EO</div>
+    <div class="sb-user-info"><p>Emeka Okafor</p><p>Customer</p></div>
+  </div>
+  <nav class="sb-nav">
+    <div class="sb-section-label">Main</div>
+    <a href="customer-dashboard.html" class="sb-link"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a>
+    <a href="booking.html" class="sb-link"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Book a service</a>
+    <a href="booking-history.html" class="sb-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>My jobs</a>
+    <a href="#" class="sb-link"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages</a>
+    <div class="sb-section-label">Account</div>
+    <a href="profile.html" class="sb-link"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
+    <a href="settings.html" class="sb-link active"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings</a>
+  </nav>
+  <div class="sb-bottom"><a href="login.html" class="sb-logout"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out</a></div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div class="topbar-left"><h1>Account <em>settings</em></h1></div>
+  </div>
+
+  <div class="inner-page">
+    <div class="settings-nav">
+      <button class="settings-tab active" onclick="switchTab(this,'notifications')">Notifications</button>
+      <button class="settings-tab" onclick="switchTab(this,'privacy')">Privacy</button>
+      <button class="settings-tab" onclick="switchTab(this,'appearance')">Appearance</button>
+      <button class="settings-tab" onclick="switchTab(this,'account')">Account</button>
+    </div>
+
+    <!-- NOTIFICATIONS -->
+    <div class="settings-panel active" id="tab-notifications">
+      <div class="setting-group">
+        <div class="setting-group-label">Push notifications</div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Job status updates</h4><p>Get notified when your provider accepts, starts, or completes a job</p></div>
+          <div class="setting-control"><div class="toggle-pill on" onclick="togglePill(this)"></div></div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>New messages</h4><p>Notifications when a provider sends you a message</p></div>
+          <div class="setting-control"><div class="toggle-pill on" onclick="togglePill(this)"></div></div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Promotions & offers</h4><p>Discounts and special offers from Panoply</p></div>
+          <div class="setting-control"><div class="toggle-pill" onclick="togglePill(this)"></div></div>
+        </div>
+      </div>
+      <div class="setting-group">
+        <div class="setting-group-label">Email notifications</div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Booking confirmations</h4><p>Email receipt when a booking is confirmed</p></div>
+          <div class="setting-control"><div class="toggle-pill on" onclick="togglePill(this)"></div></div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Weekly summary</h4><p>A weekly digest of your activity on Panoply</p></div>
+          <div class="setting-control"><div class="toggle-pill" onclick="togglePill(this)"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIVACY -->
+    <div class="settings-panel" id="tab-privacy">
+      <div class="setting-group">
+        <div class="setting-group-label">Location</div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Share location for matching</h4><p>Used to find nearby providers. Never shared with third parties</p></div>
+          <div class="setting-control"><div class="toggle-pill on" onclick="togglePill(this)"></div></div>
+        </div>
+      </div>
+      <div class="setting-group">
+        <div class="setting-group-label">Profile visibility</div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Show profile to providers</h4><p>Providers you book can see your name and rating history</p></div>
+          <div class="setting-control"><div class="toggle-pill on" onclick="togglePill(this)"></div></div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Show reviews I've written</h4><p>Your reviews are publicly visible on provider profiles</p></div>
+          <div class="setting-control"><div class="toggle-pill on" onclick="togglePill(this)"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPEARANCE -->
+    <div class="settings-panel" id="tab-appearance">
+      <div class="setting-group">
+        <div class="setting-group-label">Display</div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Language</h4><p>Choose your preferred display language</p></div>
+          <div class="setting-control">
+            <select class="select-control"><option>English</option><option>Yoruba</option><option>Igbo</option><option>Hausa</option></select>
+          </div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Distance unit</h4><p>How distances are displayed in provider matches</p></div>
+          <div class="setting-control">
+            <select class="select-control"><option>Kilometres (km)</option><option>Miles (mi)</option></select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ACCOUNT -->
+    <div class="settings-panel" id="tab-account">
+      <div class="setting-group">
+        <div class="setting-group-label">Account actions</div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Download my data</h4><p>Get a copy of all your Panoply data</p></div>
+          <div class="setting-control"><button class="btn-ghost" style="font-size:0.8rem;padding:0.4rem 0.9rem" onclick="showToast('Data export requested')">Request export</button></div>
+        </div>
+        <div class="setting-row">
+          <div class="setting-info"><h4>Connected devices</h4><p>2 devices currently signed in</p></div>
+          <div class="setting-control"><button class="btn-ghost" style="font-size:0.8rem;padding:0.4rem 0.9rem">Manage</button></div>
+        </div>
+      </div>
+      <div class="danger-zone">
+        <div class="danger-zone-label">Danger zone</div>
+        <div class="danger-item">
+          <div><h4>Deactivate account</h4><p>Temporarily hide your account. You can reactivate anytime.</p></div>
+          <button class="btn-danger" onclick="showToast('Account deactivated')">Deactivate</button>
+        </div>
+        <div class="danger-item">
+          <div><h4>Delete account</h4><p>Permanently delete your account and all data. This cannot be undone.</p></div>
+          <button class="btn-danger" onclick="confirmDelete()">Delete account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toast-msg">Saved</span>
+</div>
+
+<script src="settings.js" defer></script>
+</body>
+</html>
