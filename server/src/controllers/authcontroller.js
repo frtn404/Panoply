@@ -4,20 +4,18 @@ const prisma = require("../config/prisma");
 
 const register = async (req, res) => {
     try {
-        const { fullName, email, phone, password } = req.body;
+        const { fullName, email, phone, password, role } = req.body;
 
-        // Check that required fields exist
+        // Check required fields
         if (!fullName || !email || !password) {
             return res.status(400).json({
                 message: "Full name, email and password are required."
             });
         }
 
-        // Check whether email already exists
+        // Check if email already exists
         const existingUser = await prisma.user.findUnique({
-            where: {
-                email: email
-            }
+            where: { email: email }
         });
 
         if (existingUser) {
@@ -29,31 +27,46 @@ const register = async (req, res) => {
         // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Create user
-        const user = await prisma.user.create({
-            data: {
-                fullName,
-                email,
-                phone,
-                password: hashedPassword
+        const userRole = role || "customer";
+
+        // Create user AND profile together in one transaction
+        const result = await prisma.$transaction(async (tx) => {
+            const user = await tx.user.create({
+                data: {
+                    fullName,
+                    email,
+                    phone,
+                    password: hashedPassword,
+                    role: userRole
+                }
+            });
+            
+            if (userRole === "provider") {
+                await tx.providerProfile.create({
+                    data: { userId: user.id }
+                });
+            } else {
+                await tx.customerProfile.create({
+                    data: { userId: user.id }
+                });
             }
+
+            return user;
         });
 
-        // Don't send the password back
         res.status(201).json({
             message: "Account created successfully.",
             user: {
-                id: user.id,
-                fullName: user.fullName,
-                email: user.email,
-                phone: user.phone,
-                role: user.role
+                id: result.id,
+                fullName: result.fullName,
+                email: result.email,
+                phone: result.phone,
+                role: result.role
             }
         });
 
     } catch (error) {
-        console.error("Registration error:", error);
-
+        console.error("Registration error:", error.message);
         res.status(500).json({
             message: "Something went wrong while creating your account."
         });

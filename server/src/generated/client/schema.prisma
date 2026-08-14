@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/client"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+enum Role {
+  customer
+  provider
+  admin
+}
+
+enum TradeCategory {
+  Electrical
+  Plumbing
+  Cleaning
+  AC_Repair
+  Carpentry
+  Generator
+  Solar
+  Painting
+}
+
+model User {
+  id              Int              @id @default(autoincrement())
+  fullName        String
+  email           String           @unique
+  phone           String?
+  password        String
+  role            Role             @default(customer)
+  createdAt       DateTime         @default(now())
+  ProviderProfile ProviderProfile?
+  CustomerProfile CustomerProfile?
+}
+
+model ProviderProfile {
+  id                 Int           @id @default(autoincrement())
+  userId             Int           @unique
+  user               User          @relation(fields: [userId], references: [id])
+  category           TradeCategory
+  bio                String?
+  averageRating      Float         @default(0)
+  isAvailable        Boolean       @default(true)
+  completedJobsCount Int           @default(0)
+  latitude           Float?
+  longitude          Float?
+  createdAt          DateTime      @default(now())
+}
+
+model CustomerProfile {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id])
+  address   String?
+  latitude  Float?
+  longitude Float?
+  createdAt DateTime @default(now())
+}
