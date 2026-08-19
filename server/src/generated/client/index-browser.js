@@ -152,6 +152,23 @@ exports.Prisma.CustomerProfileScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ServiceRequestScalarFieldEnum = {
+  id: 'id',
+  customerId: 'customerId',
+  providerId: 'providerId',
+  category: 'category',
+  description: 'description',
+  address: 'address',
+  latitude: 'latitude',
+  longitude: 'longitude',
+  scheduledDate: 'scheduledDate',
+  status: 'status',
+  amount: 'amount',
+  cancelReason: 'cancelReason',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -176,6 +193,12 @@ exports.Prisma.ProviderProfileOrderByRelevanceFieldEnum = {
 exports.Prisma.CustomerProfileOrderByRelevanceFieldEnum = {
   address: 'address'
 };
+
+exports.Prisma.ServiceRequestOrderByRelevanceFieldEnum = {
+  description: 'description',
+  address: 'address',
+  cancelReason: 'cancelReason'
+};
 exports.Role = exports.$Enums.Role = {
   customer: 'customer',
   provider: 'provider',
@@ -193,10 +216,21 @@ exports.TradeCategory = exports.$Enums.TradeCategory = {
   Painting: 'Painting'
 };
 
+exports.JobStatus = exports.$Enums.JobStatus = {
+  pending: 'pending',
+  assigning: 'assigning',
+  accepted: 'accepted',
+  in_progress: 'in_progress',
+  completed: 'completed',
+  cancelled: 'cancelled',
+  failed: 'failed'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   ProviderProfile: 'ProviderProfile',
-  CustomerProfile: 'CustomerProfile'
+  CustomerProfile: 'CustomerProfile',
+  ServiceRequest: 'ServiceRequest'
 };
 
 /**

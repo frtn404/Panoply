@@ -21,6 +21,15 @@ enum TradeCategory {
   Solar
   Painting
 }
+enum JobStatus {
+  pending
+  assigning
+  accepted
+  in_progress
+  completed
+  cancelled
+  failed
+}
 model User {
   id        Int      @id @default(autoincrement())
   fullName  String
@@ -31,12 +40,14 @@ model User {
   createdAt DateTime @default(now())
   ProviderProfile ProviderProfile?
   CustomerProfile CustomerProfile?
+  requestsAsCustomer ServiceRequest[] @relation("CustomerRequests")
+  requestsAsProvider ServiceRequest[] @relation("ProviderRequests")
 }
 model ProviderProfile {
   id                 Int           @id @default(autoincrement())
   userId             Int           @unique
   user               User          @relation(fields: [userId], references: [id])
-  category           TradeCategory
+  category           TradeCategory?
   bio                String?
   averageRating      Float         @default(0)
   isAvailable        Boolean       @default(true)
@@ -53,4 +64,23 @@ model CustomerProfile {
   latitude  Float?
   longitude Float?
   createdAt DateTime @default(now())
+}
+model ServiceRequest {
+  id             Int          @id @default(autoincrement())
+  customerId     Int
+  providerId     Int?
+  category       TradeCategory
+  description    String
+  address        String
+  latitude       Float
+  longitude      Float
+  scheduledDate  DateTime
+  status         JobStatus    @default(pending)
+  amount         Float?
+  cancelReason   String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  customer       User         @relation("CustomerRequests", fields: [customerId], references: [id])
+  provider       User?        @relation("ProviderRequests", fields: [providerId], references: [id])
 }
