@@ -46,7 +46,7 @@ function togglePw(id) {
   input.type = input.type === 'password' ? 'text' : 'password';
 }
 
-function handleSubmit() {
+async function handleSubmit() {
   const pw1   = document.getElementById('pw1').value;
   const pw2   = document.getElementById('pw2').value;
   const terms = document.getElementById('terms').checked;
@@ -64,11 +64,66 @@ function handleSubmit() {
     return;
   }
 
-  // Show success screen
-  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
-  document.getElementById('step4').classList.add('active');
-  document.getElementById('prog').style.width = '100%';
-  document.querySelector('.stepbar').style.display = 'none';
+  // Collect form data
+  const fullName = document.getElementById('fname').value.trim() + ' ' + document.getElementById('lname').value.trim();
+  const email    = document.getElementById('email').value.trim();
+  const phone    = document.getElementById('phone').value.trim();
+  const state    = document.getElementById('state').value;
+  const role     = currentRole === 'artisan' ? 'provider' : currentRole;
 
-  // TODO: Replace with real API call to POST /api/auth/register
+  // Provider trade category
+  let tradeCategory = null;
+  if (role === 'provider') {
+    tradeCategory = document.getElementById('trade').value;
+    if (!tradeCategory) {
+      alert('Please select your trade category.');
+      return;
+    }
+  }
+
+  try {
+    const response = await fetch(`${API_URL}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        fullName,
+        email,
+        phone,
+        password: pw1,
+        role,
+        ...(tradeCategory && { tradeCategory }),
+        state
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      alert(data.message || 'Registration failed.');
+      return;
+    }
+
+    // Store token and user
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('user', JSON.stringify(data.user));
+
+    // Show success screen
+    document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('step4').classList.add('active');
+    document.getElementById('prog').style.width = '100%';
+    document.querySelector('.stepbar').style.display = 'none';
+
+    // Redirect after 2 seconds
+    setTimeout(() => {
+      if (data.user.role === 'provider') {
+        window.location.href = 'provider-dashboard.html';
+      } else {
+        window.location.href = 'customer-dashboard.html';
+      }
+    }, 2000);
+
+  } catch (error) {
+    alert('Cannot connect to server. Please try again.');
+    console.error('Registration error:', error);
+  }
 }

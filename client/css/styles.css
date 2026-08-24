@@ -301,14 +301,16 @@ nav {
 }
 .sb-link {
   display: flex; align-items: center; justify-content: space-between;
+  width: 100%;
   padding: 0.6rem 1.25rem;
   font-size: 0.85rem; font-weight: 500; color: var(--muted2);
   text-decoration: none; border-left: 2px solid transparent;
   transition: color 0.15s, background 0.15s, border-color 0.15s;
+  white-space: nowrap; overflow: hidden;
 }
 .sb-link:hover { color: var(--cream); background: var(--bg3); }
 .sb-link.active { color: var(--amber); border-left-color: var(--amber); background: var(--amber-dim); }
-.sb-link-inner { display: flex; align-items: center; gap: 0.75rem; }
+.sb-link-inner { display: flex; align-items: center; gap: 0.75rem; width: 100%;}
 .sb-link svg {
   width: 16px; height: 16px; stroke: currentColor;
   fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
@@ -337,7 +339,7 @@ nav {
 
 /* ── Dashboard Main Layout ────────────────────────────────── */
 .dash-body { display: flex; }
-.main { margin-left: var(--sidebar); flex: 1; min-height: 100vh; display: flex; flex-direction: column; }
+.dash-body .main { margin-left: var(--sidebar); flex: 1; min-height: 100vh; display: flex; flex-direction: column; }
 .topbar {
   display: flex; align-items: center; justify-content: space-between;
   padding: 0 2rem; height: 60px;
@@ -1500,4 +1502,33 @@ footer p { font-size: 0.78rem; color: var(--muted); }
   .history-search { display: none; }
   .profile-stats-row { grid-template-columns: 1fr; }
   .settings-nav { gap: 0.25rem; }
+}/* ── Dashboard sidebar fix ─────────────────────────────────── */
+.sidebar {
+  overflow: hidden;
+}
+
+.sb-nav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sb-link {
+  display: flex !important;
+  width: 100% !important;
+  align-items: center;
+  padding: 0.6rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted2);
+  text-decoration: none;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+
+.sb-link-inner {
+  display: flex !important;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
 }

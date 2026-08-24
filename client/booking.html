@@ -121,7 +121,7 @@
         <h1>Your <em>matched</em> providers.</h1>
         <p>Based on your job details, we found the best nearby providers for you. You can select one to continue.</p>
       </div>
-      <div class="providers-list">
+      <div class="providers-list" id = "providers-list">
         <div class="provider-card selected" onclick="selectProvider(this,'Tunde Jimoh','Electrician','TJ')">
           <div class="pr-rank">1</div>
           <div class="pr-avatar">TJ</div>
@@ -182,7 +182,7 @@
       </div>
       <div class="btn-row">
         <button class="btn-back" onclick="goStep(3)">Back</button>
-        <button class="btn-next" onclick="goStep(5)">Confirm booking</button>
+        <button class="btn-next" onclick="handleSubmit()">Confirm booking</button>
       </div>
     </div>
 
@@ -223,6 +223,7 @@
   </div>
 </div>
 
+<script src="/client/js/config.js"></script>
 <script src="js/booking.js"></script>
 </body>
 </html>

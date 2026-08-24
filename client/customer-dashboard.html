@@ -5,44 +5,71 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>My Dashboard — Panoply</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="css/styles.css"/>
+<link rel="stylesheet" href="/client/css/styles.css"/>
 </head>
-<body>
+<body class="dash-body">
+<!-- <style>
+    .sidebar { overflow: hidden; }
+    .sb-nav a { white-space: nowrap; overflow: hidden; }
+</style> -->
+<!-- <style> 
+    .main { margin-left: 240px !important; }
+    .sb-nav { display: flex !important; flex-direction: column !important; }
+    .sb-link { display: flex !important; width: 100% !important; }
+</style> -->
 
 <!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sb-logo"><a href="index.html">pan<em>oply</em></a></div>
   <div class="sb-user">
-    <div class="sb-avatar">EO</div>
+    <div class="sb-avatar amber" id="sidebar-avatar">EO</div>
     <div class="sb-user-info">
-      <p>Emeka Okafor</p>
-      <p>Customer</p>
+      <p id="sidebar-name">Loading...</p>
+      <p id="sidebar-role">Customer</p>
     </div>
   </div>
-  <nav class="sb-nav">
+ <nav class="sb-nav">
     <div class="sb-section-label">Main</div>
     <a href="customer-dashboard.html" class="sb-link active">
-      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard
+        <div class="sb-link-inner">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            Dashboard
+        </div>
     </a>
     <a href="booking.html" class="sb-link">
-      <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Book a service
+        <div class="sb-link-inner">
+            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+            Book a service
+        </div>
+    </a>
+    <a href="booking-history.html" class="sb-link">
+        <div class="sb-link-inner">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            My jobs
+        </div>
     </a>
     <a href="#" class="sb-link">
-      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>My jobs
-    </a>
-    <a href="#" class="sb-link">
-      <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages
+        <div class="sb-link-inner">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Messages
+        </div>
     </a>
     <div class="sb-section-label">Account</div>
-    <a href="#" class="sb-link">
-      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile
+    <a href="profile.html" class="sb-link">
+        <div class="sb-link-inner">
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profile
+        </div>
     </a>
-    <a href="#" class="sb-link">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings
+    <a href="settings.html" class="sb-link">
+        <div class="sb-link-inner">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            Settings
+        </div>
     </a>
-  </nav>
+</nav>
   <div class="sb-bottom">
-    <a href="login.html" class="sb-logout">
+    <a href="login.html" class="sb-logout" onclick="localStorage.clear()">
       <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out
     </a>
   </div>
@@ -52,7 +79,7 @@
 <div class="main">
   <div class="topbar">
     <div class="topbar-left">
-      <h1>Good afternoon, <em>Emeka.</em></h1>
+      <h1>Good afternoon, <em id = "dashboard-greeting">Emeka.</em></h1>
     </div>
     <div class="topbar-right">
       <button class="notif-btn" aria-label="Notifications">
@@ -68,17 +95,17 @@
     <div class="stats-row">
       <div class="stat-card">
         <div class="stat-card-label">Total jobs</div>
-        <div class="stat-card-val">12</div>
-        <div class="stat-card-sub"><span>↑ 3</span> this month</div>
+        <div class="stat-card-val" id ="stat-total">0</div>
+        <div class="stat-card-sub">Since joining</div>
       </div>
       <div class="stat-card">
         <div class="stat-card-label">Active now</div>
-        <div class="stat-card-val">1</div>
+        <div class="stat-card-val" id="stat-active">0</div>
         <div class="stat-card-sub">In progress</div>
       </div>
       <div class="stat-card">
         <div class="stat-card-label">Completed</div>
-        <div class="stat-card-val">10</div>
+        <div class="stat-card-val" id="stat-completed">0</div>
         <div class="stat-card-sub"><span>↑ 2</span> this month</div>
       </div>
       <div class="stat-card">
@@ -216,5 +243,7 @@
     </div>
   </div>
 </div>
+<script src="/client/js/config.js"></script>
+<script src="js/customer-dashboard.js"></script>
 </body>
 </html>
