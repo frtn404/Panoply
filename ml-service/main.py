@@ -180,3 +180,117 @@ def analyse_sentiment(request: SentimentRequest):
         "label":    "positive" if score > 0.1 else "negative" if score < -0.1 else "neutral",
         "flagged":  score < -0.3
     }
+# ── Demand Forecasting ─────────────────────────────────────
+from sklearn.ensemble import GradientBoostingClassifier
+
+class DemandRequest(BaseModel):
+    dayOfWeek: int      # 0=Monday, 6=Sunday
+    hourOfDay: int      # 0-23
+    category: str
+    month: int          # 1-12
+
+"""
+Demand forecasting model.
+Predicts whether a time slot will have HIGH demand.
+
+Features:
+  - day_of_week  (0-6)
+  - hour_of_day  (0-23)
+  - month        (1-12)
+  - category_encoded (numerical encoding of service type)
+
+Trained on synthetic data reflecting realistic Nigerian
+service demand patterns — higher on weekends, mornings
+and evenings, rainy season for plumbing etc.
+"""
+
+CATEGORIES = [
+    "Electrical", "Plumbing", "Cleaning", "AC_Repair",
+    "Carpentry", "Generator", "Solar", "Painting"
+]
+
+def generate_demand_data(n=1000):
+    np.random.seed(99)
+
+    days       = np.random.randint(0, 7, n)
+    hours      = np.random.randint(6, 22, n)
+    months     = np.random.randint(1, 13, n)
+    categories = np.random.randint(0, len(CATEGORIES), n)
+
+    # Realistic demand patterns
+    # Weekends (5,6) have higher demand
+    weekend_boost  = np.where(days >= 5, 0.3, 0)
+    # Morning (7-10) and evening (17-20) peaks
+    morning_boost  = np.where((hours >= 7) & (hours <= 10), 0.25, 0)
+    evening_boost  = np.where((hours >= 17) & (hours <= 20), 0.2, 0)
+    # Rainy season (April-October) boosts plumbing/electrical
+    season_boost   = np.where(
+        (months >= 4) & (months <= 10) & (categories <= 1), 0.2, 0
+    )
+
+    base_prob = 0.3
+    prob = np.clip(
+        base_prob + weekend_boost + morning_boost + evening_boost + season_boost,
+        0, 1
+    )
+    high_demand = (np.random.random(n) < prob).astype(int)
+
+    return pd.DataFrame({
+        "day_of_week":       days,
+        "hour_of_day":       hours,
+        "month":             months,
+        "category_encoded":  categories,
+        "high_demand":       high_demand
+    })
+
+# Train demand model on startup
+print("Training demand forecasting model...")
+demand_df      = generate_demand_data()
+X_demand       = demand_df[["day_of_week", "hour_of_day", "month", "category_encoded"]]
+y_demand       = demand_df["high_demand"]
+demand_scaler  = StandardScaler()
+X_demand_scaled = demand_scaler.fit_transform(X_demand)
+demand_model   = GradientBoostingClassifier(n_estimators=100, random_state=42)
+demand_model.fit(X_demand_scaled, y_demand)
+print("Demand model trained successfully.")
+
+@app.post("/predict-demand")
+def predict_demand(request: DemandRequest):
+    """
+    Predicts demand level for a given time slot and category.
+    Used by admin dashboard to anticipate provider shortages.
+    """
+    if request.category not in CATEGORIES:
+        category_encoded = 0
+    else:
+        category_encoded = CATEGORIES.index(request.category)
+
+    features = [[
+        request.dayOfWeek,
+        request.hourOfDay,
+        request.month,
+        category_encoded
+    ]]
+
+    features_scaled = demand_scaler.transform(features)
+    prob            = demand_model.predict_proba(features_scaled)[0][1]
+
+    if prob >= 0.6:
+        level   = "high"
+        message = f"High demand expected for {request.category} services. Consider onboarding more providers."
+    elif prob >= 0.35:
+        level   = "medium"
+        message = f"Moderate demand expected for {request.category} services."
+    else:
+        level   = "low"
+        message = f"Low demand expected for {request.category} services."
+
+    return {
+        "category":    request.category,
+        "dayOfWeek":   request.dayOfWeek,
+        "hourOfDay":   request.hourOfDay,
+        "month":       request.month,
+        "probability": round(float(prob), 4),
+        "level":       level,
+        "message":     message
+    }

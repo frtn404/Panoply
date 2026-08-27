@@ -5,6 +5,7 @@ const authRoutes = require("./routes/authRoutes");
 const profileRoutes = require("./routes/profileRoutes");
 const serviceRequestRoutes = require("./routes/serviceRequestRoutes");
 const matchingRoutes = require("./routes/matchingRoutes");
+const adminMLRoutes = require("./routes/adminMLRoutes");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/profiles", profileRoutes);
 app.use("/api/requests", serviceRequestRoutes);
 app.use("/api/matching", matchingRoutes);
+app.use("/api/admin", adminMLRoutes);
 
 app.get("/", (req, res) => {
     res.json({
