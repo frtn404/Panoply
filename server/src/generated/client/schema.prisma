@@ -5,6 +5,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 enum Role {
@@ -46,6 +47,8 @@ model User {
   CustomerProfile    CustomerProfile?
   requestsAsCustomer ServiceRequest[] @relation("CustomerRequests")
   requestsAsProvider ServiceRequest[] @relation("ProviderRequests")
+  ReviewsGiven       Review[]         @relation("ReviewsGiven")
+  ReviewsReceived    Review[]         @relation("ReviewsReceived")
 }
 
 model ProviderProfile {
@@ -88,6 +91,23 @@ model ServiceRequest {
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 
-  customer User  @relation("CustomerRequests", fields: [customerId], references: [id])
-  provider User? @relation("ProviderRequests", fields: [providerId], references: [id])
+  customer User    @relation("CustomerRequests", fields: [customerId], references: [id])
+  provider User?   @relation("ProviderRequests", fields: [providerId], references: [id])
+  review   Review?
+}
+
+model Review {
+  id             Int      @id @default(autoincrement())
+  jobId          Int      @unique
+  reviewerId     Int
+  providerId     Int
+  rating         Int
+  comment        String?
+  sentimentScore Float?
+  isFlagged      Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  job      ServiceRequest @relation(fields: [jobId], references: [id])
+  reviewer User           @relation("ReviewsGiven", fields: [reviewerId], references: [id])
+  provider User           @relation("ReviewsReceived", fields: [providerId], references: [id])
 }

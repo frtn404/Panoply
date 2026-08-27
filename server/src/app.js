@@ -6,6 +6,7 @@ const profileRoutes = require("./routes/profileRoutes");
 const serviceRequestRoutes = require("./routes/serviceRequestRoutes");
 const matchingRoutes = require("./routes/matchingRoutes");
 const adminMLRoutes = require("./routes/adminMLRoutes");
+const reviewRoutes = require("./routes/reviewRoutes");
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use("/api/profiles", profileRoutes);
 app.use("/api/requests", serviceRequestRoutes);
 app.use("/api/matching", matchingRoutes);
 app.use("/api/admin", adminMLRoutes);
+app.use("/api/reviews", reviewRoutes);
 
 app.get("/", (req, res) => {
     res.json({
