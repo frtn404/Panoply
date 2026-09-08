@@ -4,28 +4,69 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Reviews — Panoply</title>
+<link rel="icon" type="image/x-icon" href="/client/images/favicon.ico"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/client/images/favicon-32x32.png"/>
+<link rel="icon" type="image/png" sizes="16x16" href="/client/images/favicon-16x16.png"/>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="styles.css"/>
+<link rel="stylesheet" href="/client/css/styles.css"/>
 </head>
 <body class="dash-body">
 
 <aside class="sidebar">
   <div class="sb-logo"><a href="index.html">pan<em>oply</em></a></div>
   <div class="sb-user">
-    <div class="sb-avatar amber">EO</div>
-    <div class="sb-user-info"><p>Emeka Okafor</p><p>Customer</p></div>
+    <div class="sb-avatar amber" id="sidebar-avatar">EO</div>
+    <div class="sb-user-info">
+      <p id="sidebar-name">Loading...</p>
+      <p id="sidebar-role">Customer</p>
+    </div>
   </div>
   <nav class="sb-nav">
     <div class="sb-section-label">Main</div>
-    <a href="customer-dashboard.html" class="sb-link"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Dashboard</a>
-    <a href="booking.html" class="sb-link"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>Book a service</a>
-    <a href="booking-history.html" class="sb-link"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>My jobs</a>
-    <a href="#" class="sb-link"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>Messages</a>
+    <a href="customer-dashboard.html" class="sb-link">
+      <div class="sb-link-inner">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </div>
+    </a>
+    <a href="booking.html" class="sb-link">
+      <div class="sb-link-inner">
+        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+        Book a service
+      </div>
+    </a>
+    <a href="booking-history.html" class="sb-link">
+      <div class="sb-link-inner">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        My jobs
+      </div>
+    </a>
+    <a href="#" class="sb-link">
+      <div class="sb-link-inner">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Messages
+      </div>
+    </a>
     <div class="sb-section-label">Account</div>
-    <a href="profile.html" class="sb-link active"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>Profile</a>
-    <a href="settings.html" class="sb-link"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>Settings</a>
+    <a href="profile.html" class="sb-link active">
+      <div class="sb-link-inner">
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Profile
+      </div>
+    </a>
+    <a href="settings.html" class="sb-link">
+      <div class="sb-link-inner">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        Settings
+      </div>
+    </a>
   </nav>
-  <div class="sb-bottom"><a href="login.html" class="sb-logout"><svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>Log out</a></div>
+  <div class="sb-bottom">
+    <a href="login.html" class="sb-logout" onclick="localStorage.clear()">
+      <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Log out
+    </a>
+  </div>
 </aside>
 
 <div class="main">
@@ -41,31 +82,32 @@
       <span>Reviews</span>
     </div>
 
+    <!-- SUMMARY -->
     <div class="reviews-summary">
       <div class="reviews-big-score">
-        <div class="reviews-big-num">4.6</div>
+        <div class="reviews-big-num" id="reviews-big-num">—</div>
         <div class="reviews-stars">
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
           <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24" class="empty"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         </div>
-        <div class="reviews-count">10 reviews given</div>
+        <div class="reviews-count" id="reviews-count">0 reviews given</div>
       </div>
       <div class="rating-bars">
-        <div class="rating-bar-row"><div class="rating-bar-label">5 ★</div><div class="rating-bar-track"><div class="rating-bar-fill" style="width:60%"></div></div><div class="rating-bar-count">6</div></div>
-        <div class="rating-bar-row"><div class="rating-bar-label">4 ★</div><div class="rating-bar-track"><div class="rating-bar-fill" style="width:30%"></div></div><div class="rating-bar-count">3</div></div>
-        <div class="rating-bar-row"><div class="rating-bar-label">3 ★</div><div class="rating-bar-track"><div class="rating-bar-fill" style="width:10%"></div></div><div class="rating-bar-count">1</div></div>
+        <div class="rating-bar-row"><div class="rating-bar-label">5 ★</div><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><div class="rating-bar-count">0</div></div>
+        <div class="rating-bar-row"><div class="rating-bar-label">4 ★</div><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><div class="rating-bar-count">0</div></div>
+        <div class="rating-bar-row"><div class="rating-bar-label">3 ★</div><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><div class="rating-bar-count">0</div></div>
         <div class="rating-bar-row"><div class="rating-bar-label">2 ★</div><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><div class="rating-bar-count">0</div></div>
         <div class="rating-bar-row"><div class="rating-bar-label">1 ★</div><div class="rating-bar-track"><div class="rating-bar-fill" style="width:0%"></div></div><div class="rating-bar-count">0</div></div>
       </div>
     </div>
 
     <!-- WRITE A REVIEW -->
-    <div class="write-review-card">
+    <div class="write-review-card" id="write-review-section">
       <h3>Leave a <em style="font-style:italic;color:var(--amber)">review</em></h3>
-      <p>Rate your most recent completed job — Socket replacement with Tunde Jimoh.</p>
+      <p id="pending-job-title">Loading...</p>
       <div class="star-picker" id="star-picker">
         <svg viewBox="0 0 24 24" onclick="setStars(1)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <svg viewBox="0 0 24 24" onclick="setStars(2)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
@@ -73,47 +115,18 @@
         <svg viewBox="0 0 24 24" onclick="setStars(4)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
         <svg viewBox="0 0 24 24" onclick="setStars(5)"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
       </div>
-      <div class="field"><textarea placeholder="Describe your experience — was the provider on time, was the work done properly?"></textarea></div>
-      <button class="btn-save" onclick="showToast('Review submitted')">Submit review</button>
+      <div class="field">
+        <textarea id="review-comment" placeholder="Describe your experience — was the provider on time, was the work done properly?"></textarea>
+      </div>
+      <button class="btn-save" onclick="submitReview()">Submit review</button>
     </div>
 
     <!-- PAST REVIEWS -->
-    <div class="section-head" style="padding:0;margin-bottom:1rem"><h2 style="font-size:0.95rem;font-weight:600">Reviews you've left</h2></div>
-
-    <div class="review-card-item">
-      <div class="review-header">
-        <div class="reviewer-info">
-          <div class="reviewer-avatar" style="background:var(--blue-dim);color:var(--blue)">TJ</div>
-          <div><div class="reviewer-name">Tunde Jimoh</div><div class="reviewer-date">3 days ago · Electrical</div></div>
-        </div>
-        <div class="review-stars">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-        </div>
-      </div>
-      <p class="review-text">Tunde was on time, professional, and fixed the fault in under an hour. Very clear about what needed to be done and why. Will definitely book again.</p>
-      <div class="review-job-tag">Socket replacement</div>
+    <div class="section-head" style="padding:0;margin-bottom:1rem">
+      <h2 style="font-size:0.95rem;font-weight:600">Reviews you've left</h2>
     </div>
-
-    <div class="review-card-item">
-      <div class="review-header">
-        <div class="reviewer-info">
-          <div class="reviewer-avatar" style="background:var(--green-dim);color:var(--green)">CE</div>
-          <div><div class="reviewer-name">Chukwu Eze</div><div class="reviewer-date">1 week ago · Plumbing</div></div>
-        </div>
-        <div class="review-stars">
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-          <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" style="fill:var(--bg3)"/></svg>
-        </div>
-      </div>
-      <p class="review-text">Good job overall. Fixed the pipe leak quickly. Arrived a bit late but gave a heads up in advance, which I appreciated.</p>
-      <div class="review-job-tag">Pipe leak repair</div>
+    <div id="my-reviews-list">
+      <p style="color:var(--muted2)">Loading...</p>
     </div>
   </div>
 </div>
@@ -123,6 +136,7 @@
   <span id="toast-msg">Review submitted</span>
 </div>
 
-<script src="reviews.js" defer></script>
+<script src="/client/js/config.js"></script>
+<script src="/client/js/reviews.js"></script>
 </body>
 </html>

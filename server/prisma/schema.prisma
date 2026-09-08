@@ -31,6 +31,11 @@ enum JobStatus {
   cancelled
   failed
 }
+enum UserStatus {
+  active
+  pending
+  suspended
+}
 model User {
   id        Int      @id @default(autoincrement())
   fullName  String
@@ -45,6 +50,7 @@ model User {
   requestsAsProvider ServiceRequest[] @relation("ProviderRequests")
   ReviewsGiven       Review[]       @relation("ReviewsGiven")
   ReviewsReceived      Review[]       @relation("ReviewsReceived")
+  status    UserStatus @default(active)
 }
 model ProviderProfile {
   id                 Int           @id @default(autoincrement())

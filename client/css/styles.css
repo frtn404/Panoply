@@ -1532,3 +1532,50 @@ footer p { font-size: 0.78rem; color: var(--muted); }
   gap: 0.75rem;
   width: 100%;
 }
+/* ── Register page fix ─────────────────────────────────── */
+.register-body nav {
+  background: rgba(12,12,10,0.88);
+  backdrop-filter: blur(16px);
+}
+
+.reg-wrap {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.register-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 5% 6rem;
+}
+/* ── Auth layout fix ───────────────────────────────────── */
+.auth-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+
+.panel-left {
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.panel-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem;
+  background: var(--bg);
+}
+
+.form-wrap {
+  width: 100%;
+  max-width: 400px;
+}

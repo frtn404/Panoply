@@ -127,7 +127,8 @@ exports.Prisma.UserScalarFieldEnum = {
   phone: 'phone',
   password: 'password',
   role: 'role',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  status: 'status'
 };
 
 exports.Prisma.ProviderProfileScalarFieldEnum = {
@@ -219,6 +220,12 @@ exports.Role = exports.$Enums.Role = {
   customer: 'customer',
   provider: 'provider',
   admin: 'admin'
+};
+
+exports.UserStatus = exports.$Enums.UserStatus = {
+  active: 'active',
+  pending: 'pending',
+  suspended: 'suspended'
 };
 
 exports.TradeCategory = exports.$Enums.TradeCategory = {

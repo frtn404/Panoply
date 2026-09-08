@@ -28,6 +28,7 @@ const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         const userRole = role || "customer";
+        const userStatus = userRole === "provider" ? "pending" : "active";
 
         // Create user AND profile together in one transaction
         const result = await prisma.$transaction(async (tx) => {
@@ -37,7 +38,9 @@ const register = async (req, res) => {
                     email,
                     phone,
                     password: hashedPassword,
-                    role: userRole
+                    role: userRole,
+                    status: userStatus
+
                 }
             });
             
