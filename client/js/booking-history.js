@@ -12,18 +12,20 @@ let allJobs     = [];
 let activeFilter = 'all';
 
 document.addEventListener('DOMContentLoaded', async () => {
-  // Populate sidebar
-const sidebarName = document.getElementById('sidebar-name');
-const sidebarRole = document.getElementById('sidebar-role');
-const avatar      = document.getElementById('sidebar-avatar');
-
-if (sidebarName) sidebarName.textContent = user.fullName;
-if (sidebarRole) sidebarRole.textContent = user.role;
-if (avatar) {
-    avatar.textContent = user.fullName.split(' ').map(n => n[0]).join('');
+// Update page title based on role
+const pageTitle = document.querySelector('h1');
+if (pageTitle && user.role === 'provider') {
+    pageTitle.innerHTML = 'My <em>jobs</em>';
 }
     await loadJobs();
 });
+// Set dashboard link based on role
+const dashLink = document.getElementById('dashboard-link');
+if (dashLink) {
+    dashLink.href = user.role === 'provider' 
+        ? 'provider-dashboard.html' 
+        : 'customer-dashboard.html';
+}
 
 async function loadJobs() {
     try {
@@ -70,7 +72,7 @@ function renderJobs(jobs) {
     }
 
     list.innerHTML = jobs.map(j => `
-        <div class="history-card" data-status="${j.status}" data-title="${j.category}">
+        <div class="history-card" data-status="${j.status}" data-title="${j.category}" onclick="openJobModal(${j.id})" style="cursor:pointer">
             <div class="history-card-icon" style="background:var(--amber-dim)">
                 <svg viewBox="0 0 24 24" style="stroke:var(--amber)"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
             </div>
@@ -124,3 +126,157 @@ function applyFilters(query = '') {
 
     renderJobs(filtered);
 }
+// ── Job detail modal ───────────────────────────────────────
+async function openJobModal(jobId) {
+    const job = allJobs.find(j => j.id === jobId);
+    if (!job) return;
+
+    const modal = document.getElementById('job-modal');
+    const content = document.getElementById('job-modal-content');
+
+    content.innerHTML = `
+        <div class="modal-job-header">
+            <h3>${job.category}</h3>
+            <div class="job-status status-${getStatusClass(job.status)}">${job.status.replace('_', ' ')}</div>
+        </div>
+        <div class="modal-job-details">
+            <p><strong>Description:</strong> ${job.description}</p>
+            <p><strong>Address:</strong> ${job.address}</p>
+            <p><strong>Scheduled:</strong> ${new Date(job.scheduledDate).toLocaleDateString()}</p>
+            ${job.amount ? `<p><strong>Amount:</strong> ₦${job.amount.toLocaleString()}</p>` : ''}
+            ${job.provider ? `<p><strong>Provider:</strong> ${job.provider.fullName}</p>` : ''}
+        </div>
+
+       ${job.status === 'accepted' ? `
+<div class="otp-section" id="otp-section-${job.id}">
+    <h4 style="margin-bottom:0.75rem">Meeting Verification</h4>
+    <p style="color:var(--muted2);font-size:0.85rem;margin-bottom:1rem">
+        When you meet, generate OTPs to verify each other's identity.
+    </p>
+    <button class="btn-amber" onclick="generateOtp(${job.id})" id="generate-otp-btn-${job.id}">
+        Generate OTPs
+    </button>
+    <div id="otp-display-${job.id}" style="display:none;margin-top:1rem">
+        <div class="otp-box">
+            <div class="otp-label">Your OTP — show this to the ${user.role === 'customer' ? 'provider' : 'customer'}</div>
+            <div class="otp-code" id="otp-code-${job.id}">------</div>
+            <div class="otp-expiry" id="otp-expiry-${job.id}" style="font-size:0.75rem;color:var(--muted2);margin-top:0.5rem"></div>
+        </div>
+        <div style="margin-top:1rem">
+            <label style="font-size:0.85rem;color:var(--muted2);display:block;margin-bottom:0.5rem">
+                Enter ${user.role === 'customer' ? "provider's" : "customer's"} OTP
+            </label>
+            <div style="display:flex;gap:0.5rem">
+                <input type="text" id="otp-input-${job.id}" maxlength="6"
+                    placeholder="6-digit OTP"
+                    style="flex:1;padding:0.6rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--cream);font-size:1rem;letter-spacing:0.2em"/>
+                <button class="btn-save" onclick="verifyOtp(${job.id})">Verify</button>
+            </div>
+        </div>
+    </div>
+</div>
+` : ''}
+
+        ${job.status === 'in_progress' ? `
+        <div style="padding:1rem;background:var(--green-dim);border-radius:8px;margin-top:1rem">
+            <p style="color:var(--green);font-size:0.85rem">✓ Identity verified — job is in progress</p>
+        </div>
+        ` : ''}
+    `;
+
+    modal.style.display = 'flex';
+}
+
+function closeJobModal() {
+    document.getElementById('job-modal').style.display = 'none';
+}
+
+async function generateOtp(jobId) {
+    try {
+        const res = await fetch(`${API_URL}/otp/${jobId}/generate`, {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.message);
+            return;
+        }
+
+        document.getElementById(`otp-display-${jobId}`).style.display = 'block';
+        document.getElementById(`otp-code-${jobId}`).textContent = data.yourOtp;
+        document.getElementById(`generate-otp-btn-${jobId}`).textContent = 'Regenerate OTPs';
+
+        const expiry = new Date(data.expiresAt);
+        document.getElementById(`otp-expiry-${jobId}`).textContent =
+            `Expires at ${expiry.toLocaleTimeString()}`;
+
+    } catch (err) {
+        console.error('Generate OTP error:', err);
+    }
+}
+
+async function verifyOtp(jobId) {
+    const otp = document.getElementById(`otp-input-${jobId}`).value.trim();
+
+    if (!otp || otp.length !== 6) {
+        alert('Please enter the 6-digit OTP from your provider.');
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_URL}/otp/${jobId}/verify`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ otp })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.message);
+            return;
+        }
+
+        alert('Identity verified! Job is now in progress.');
+        closeJobModal();
+        await loadJobs();
+
+    } catch (err) {
+        console.error('Verify OTP error:', err);
+    }
+}
+// Availability toggle for providers
+async function toggleAvail() {
+    const token = localStorage.getItem('token');
+    const toggleEl = document.getElementById('avail-toggle');
+    const labelEl  = document.getElementById('avail-label');
+
+    const isNowAvailable = labelEl.textContent === 'Unavailable';
+
+    if (isNowAvailable) {
+        toggleEl.classList.remove('off');
+        labelEl.textContent = 'Available';
+        labelEl.className   = 'avail-label on';
+    } else {
+        toggleEl.classList.add('off');
+        labelEl.textContent = 'Unavailable';
+        labelEl.className   = 'avail-label off';
+    }
+
+    try {
+        await fetch(`${API_URL}/profiles/provider`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ isAvailable: isNowAvailable })
+        });
+    } catch (err) {
+        console.error('Availability update error:', err);
+    }
+} 

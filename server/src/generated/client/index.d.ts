@@ -4537,6 +4537,10 @@ export namespace Prisma {
     cancelReason: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    customerOtp: string | null
+    providerOtp: string | null
+    otpExpiresAt: Date | null
+    otpVerifiedAt: Date | null
   }
 
   export type ServiceRequestMaxAggregateOutputType = {
@@ -4554,6 +4558,10 @@ export namespace Prisma {
     cancelReason: string | null
     createdAt: Date | null
     updatedAt: Date | null
+    customerOtp: string | null
+    providerOtp: string | null
+    otpExpiresAt: Date | null
+    otpVerifiedAt: Date | null
   }
 
   export type ServiceRequestCountAggregateOutputType = {
@@ -4571,6 +4579,10 @@ export namespace Prisma {
     cancelReason: number
     createdAt: number
     updatedAt: number
+    customerOtp: number
+    providerOtp: number
+    otpExpiresAt: number
+    otpVerifiedAt: number
     _all: number
   }
 
@@ -4608,6 +4620,10 @@ export namespace Prisma {
     cancelReason?: true
     createdAt?: true
     updatedAt?: true
+    customerOtp?: true
+    providerOtp?: true
+    otpExpiresAt?: true
+    otpVerifiedAt?: true
   }
 
   export type ServiceRequestMaxAggregateInputType = {
@@ -4625,6 +4641,10 @@ export namespace Prisma {
     cancelReason?: true
     createdAt?: true
     updatedAt?: true
+    customerOtp?: true
+    providerOtp?: true
+    otpExpiresAt?: true
+    otpVerifiedAt?: true
   }
 
   export type ServiceRequestCountAggregateInputType = {
@@ -4642,6 +4662,10 @@ export namespace Prisma {
     cancelReason?: true
     createdAt?: true
     updatedAt?: true
+    customerOtp?: true
+    providerOtp?: true
+    otpExpiresAt?: true
+    otpVerifiedAt?: true
     _all?: true
   }
 
@@ -4746,6 +4770,10 @@ export namespace Prisma {
     cancelReason: string | null
     createdAt: Date
     updatedAt: Date
+    customerOtp: string | null
+    providerOtp: string | null
+    otpExpiresAt: Date | null
+    otpVerifiedAt: Date | null
     _count: ServiceRequestCountAggregateOutputType | null
     _avg: ServiceRequestAvgAggregateOutputType | null
     _sum: ServiceRequestSumAggregateOutputType | null
@@ -4782,6 +4810,10 @@ export namespace Prisma {
     cancelReason?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    customerOtp?: boolean
+    providerOtp?: boolean
+    otpExpiresAt?: boolean
+    otpVerifiedAt?: boolean
     customer?: boolean | UserDefaultArgs<ExtArgs>
     provider?: boolean | ServiceRequest$providerArgs<ExtArgs>
     review?: boolean | ServiceRequest$reviewArgs<ExtArgs>
@@ -4804,9 +4836,13 @@ export namespace Prisma {
     cancelReason?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    customerOtp?: boolean
+    providerOtp?: boolean
+    otpExpiresAt?: boolean
+    otpVerifiedAt?: boolean
   }
 
-  export type ServiceRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerId" | "providerId" | "category" | "description" | "address" | "latitude" | "longitude" | "scheduledDate" | "status" | "amount" | "cancelReason" | "createdAt" | "updatedAt", ExtArgs["result"]["serviceRequest"]>
+  export type ServiceRequestOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "customerId" | "providerId" | "category" | "description" | "address" | "latitude" | "longitude" | "scheduledDate" | "status" | "amount" | "cancelReason" | "createdAt" | "updatedAt" | "customerOtp" | "providerOtp" | "otpExpiresAt" | "otpVerifiedAt", ExtArgs["result"]["serviceRequest"]>
   export type ServiceRequestInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     customer?: boolean | UserDefaultArgs<ExtArgs>
     provider?: boolean | ServiceRequest$providerArgs<ExtArgs>
@@ -4835,6 +4871,10 @@ export namespace Prisma {
       cancelReason: string | null
       createdAt: Date
       updatedAt: Date
+      customerOtp: string | null
+      providerOtp: string | null
+      otpExpiresAt: Date | null
+      otpVerifiedAt: Date | null
     }, ExtArgs["result"]["serviceRequest"]>
     composites: {}
   }
@@ -5221,6 +5261,10 @@ export namespace Prisma {
     readonly cancelReason: FieldRef<"ServiceRequest", 'String'>
     readonly createdAt: FieldRef<"ServiceRequest", 'DateTime'>
     readonly updatedAt: FieldRef<"ServiceRequest", 'DateTime'>
+    readonly customerOtp: FieldRef<"ServiceRequest", 'String'>
+    readonly providerOtp: FieldRef<"ServiceRequest", 'String'>
+    readonly otpExpiresAt: FieldRef<"ServiceRequest", 'DateTime'>
+    readonly otpVerifiedAt: FieldRef<"ServiceRequest", 'DateTime'>
   }
     
 
@@ -6725,7 +6769,11 @@ export namespace Prisma {
     amount: 'amount',
     cancelReason: 'cancelReason',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt'
+    updatedAt: 'updatedAt',
+    customerOtp: 'customerOtp',
+    providerOtp: 'providerOtp',
+    otpExpiresAt: 'otpExpiresAt',
+    otpVerifiedAt: 'otpVerifiedAt'
   };
 
   export type ServiceRequestScalarFieldEnum = (typeof ServiceRequestScalarFieldEnum)[keyof typeof ServiceRequestScalarFieldEnum]
@@ -6789,7 +6837,9 @@ export namespace Prisma {
   export const ServiceRequestOrderByRelevanceFieldEnum: {
     description: 'description',
     address: 'address',
-    cancelReason: 'cancelReason'
+    cancelReason: 'cancelReason',
+    customerOtp: 'customerOtp',
+    providerOtp: 'providerOtp'
   };
 
   export type ServiceRequestOrderByRelevanceFieldEnum = (typeof ServiceRequestOrderByRelevanceFieldEnum)[keyof typeof ServiceRequestOrderByRelevanceFieldEnum]
@@ -7125,6 +7175,10 @@ export namespace Prisma {
     cancelReason?: StringNullableFilter<"ServiceRequest"> | string | null
     createdAt?: DateTimeFilter<"ServiceRequest"> | Date | string
     updatedAt?: DateTimeFilter<"ServiceRequest"> | Date | string
+    customerOtp?: StringNullableFilter<"ServiceRequest"> | string | null
+    providerOtp?: StringNullableFilter<"ServiceRequest"> | string | null
+    otpExpiresAt?: DateTimeNullableFilter<"ServiceRequest"> | Date | string | null
+    otpVerifiedAt?: DateTimeNullableFilter<"ServiceRequest"> | Date | string | null
     customer?: XOR<UserScalarRelationFilter, UserWhereInput>
     provider?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     review?: XOR<ReviewNullableScalarRelationFilter, ReviewWhereInput> | null
@@ -7145,6 +7199,10 @@ export namespace Prisma {
     cancelReason?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    customerOtp?: SortOrderInput | SortOrder
+    providerOtp?: SortOrderInput | SortOrder
+    otpExpiresAt?: SortOrderInput | SortOrder
+    otpVerifiedAt?: SortOrderInput | SortOrder
     customer?: UserOrderByWithRelationInput
     provider?: UserOrderByWithRelationInput
     review?: ReviewOrderByWithRelationInput
@@ -7169,6 +7227,10 @@ export namespace Prisma {
     cancelReason?: StringNullableFilter<"ServiceRequest"> | string | null
     createdAt?: DateTimeFilter<"ServiceRequest"> | Date | string
     updatedAt?: DateTimeFilter<"ServiceRequest"> | Date | string
+    customerOtp?: StringNullableFilter<"ServiceRequest"> | string | null
+    providerOtp?: StringNullableFilter<"ServiceRequest"> | string | null
+    otpExpiresAt?: DateTimeNullableFilter<"ServiceRequest"> | Date | string | null
+    otpVerifiedAt?: DateTimeNullableFilter<"ServiceRequest"> | Date | string | null
     customer?: XOR<UserScalarRelationFilter, UserWhereInput>
     provider?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
     review?: XOR<ReviewNullableScalarRelationFilter, ReviewWhereInput> | null
@@ -7189,6 +7251,10 @@ export namespace Prisma {
     cancelReason?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    customerOtp?: SortOrderInput | SortOrder
+    providerOtp?: SortOrderInput | SortOrder
+    otpExpiresAt?: SortOrderInput | SortOrder
+    otpVerifiedAt?: SortOrderInput | SortOrder
     _count?: ServiceRequestCountOrderByAggregateInput
     _avg?: ServiceRequestAvgOrderByAggregateInput
     _max?: ServiceRequestMaxOrderByAggregateInput
@@ -7214,6 +7280,10 @@ export namespace Prisma {
     cancelReason?: StringNullableWithAggregatesFilter<"ServiceRequest"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"ServiceRequest"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"ServiceRequest"> | Date | string
+    customerOtp?: StringNullableWithAggregatesFilter<"ServiceRequest"> | string | null
+    providerOtp?: StringNullableWithAggregatesFilter<"ServiceRequest"> | string | null
+    otpExpiresAt?: DateTimeNullableWithAggregatesFilter<"ServiceRequest"> | Date | string | null
+    otpVerifiedAt?: DateTimeNullableWithAggregatesFilter<"ServiceRequest"> | Date | string | null
   }
 
   export type ReviewWhereInput = {
@@ -7556,6 +7626,10 @@ export namespace Prisma {
     cancelReason?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    customerOtp?: string | null
+    providerOtp?: string | null
+    otpExpiresAt?: Date | string | null
+    otpVerifiedAt?: Date | string | null
     customer: UserCreateNestedOneWithoutRequestsAsCustomerInput
     provider?: UserCreateNestedOneWithoutRequestsAsProviderInput
     review?: ReviewCreateNestedOneWithoutJobInput
@@ -7576,6 +7650,10 @@ export namespace Prisma {
     cancelReason?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    customerOtp?: string | null
+    providerOtp?: string | null
+    otpExpiresAt?: Date | string | null
+    otpVerifiedAt?: Date | string | null
     review?: ReviewUncheckedCreateNestedOneWithoutJobInput
   }
 
@@ -7591,6 +7669,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: UserUpdateOneRequiredWithoutRequestsAsCustomerNestedInput
     provider?: UserUpdateOneWithoutRequestsAsProviderNestedInput
     review?: ReviewUpdateOneWithoutJobNestedInput
@@ -7611,6 +7693,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     review?: ReviewUncheckedUpdateOneWithoutJobNestedInput
   }
 
@@ -7629,6 +7715,10 @@ export namespace Prisma {
     cancelReason?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    customerOtp?: string | null
+    providerOtp?: string | null
+    otpExpiresAt?: Date | string | null
+    otpVerifiedAt?: Date | string | null
   }
 
   export type ServiceRequestUpdateManyMutationInput = {
@@ -7643,6 +7733,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ServiceRequestUncheckedUpdateManyInput = {
@@ -7660,6 +7754,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ReviewCreateInput = {
@@ -8198,6 +8296,17 @@ export namespace Prisma {
     not?: NestedEnumJobStatusFilter<$PrismaModel> | $Enums.JobStatus
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
@@ -8229,6 +8338,10 @@ export namespace Prisma {
     cancelReason?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    customerOtp?: SortOrder
+    providerOtp?: SortOrder
+    otpExpiresAt?: SortOrder
+    otpVerifiedAt?: SortOrder
   }
 
   export type ServiceRequestAvgOrderByAggregateInput = {
@@ -8255,6 +8368,10 @@ export namespace Prisma {
     cancelReason?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    customerOtp?: SortOrder
+    providerOtp?: SortOrder
+    otpExpiresAt?: SortOrder
+    otpVerifiedAt?: SortOrder
   }
 
   export type ServiceRequestMinOrderByAggregateInput = {
@@ -8272,6 +8389,10 @@ export namespace Prisma {
     cancelReason?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    customerOtp?: SortOrder
+    providerOtp?: SortOrder
+    otpExpiresAt?: SortOrder
+    otpVerifiedAt?: SortOrder
   }
 
   export type ServiceRequestSumOrderByAggregateInput = {
@@ -8317,6 +8438,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumJobStatusFilter<$PrismaModel>
     _max?: NestedEnumJobStatusFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type ServiceRequestScalarRelationFilter = {
@@ -8728,6 +8863,10 @@ export namespace Prisma {
     set?: $Enums.JobStatus
   }
 
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type UserUpdateOneRequiredWithoutRequestsAsCustomerNestedInput = {
     create?: XOR<UserCreateWithoutRequestsAsCustomerInput, UserUncheckedCreateWithoutRequestsAsCustomerInput>
     connectOrCreate?: UserCreateOrConnectWithoutRequestsAsCustomerInput
@@ -9077,6 +9216,17 @@ export namespace Prisma {
     not?: NestedEnumJobStatusFilter<$PrismaModel> | $Enums.JobStatus
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | null
@@ -9111,6 +9261,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumJobStatusFilter<$PrismaModel>
     _max?: NestedEnumJobStatusFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type ProviderProfileCreateWithoutUserInput = {
@@ -9173,6 +9337,10 @@ export namespace Prisma {
     cancelReason?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    customerOtp?: string | null
+    providerOtp?: string | null
+    otpExpiresAt?: Date | string | null
+    otpVerifiedAt?: Date | string | null
     provider?: UserCreateNestedOneWithoutRequestsAsProviderInput
     review?: ReviewCreateNestedOneWithoutJobInput
   }
@@ -9191,6 +9359,10 @@ export namespace Prisma {
     cancelReason?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    customerOtp?: string | null
+    providerOtp?: string | null
+    otpExpiresAt?: Date | string | null
+    otpVerifiedAt?: Date | string | null
     review?: ReviewUncheckedCreateNestedOneWithoutJobInput
   }
 
@@ -9216,6 +9388,10 @@ export namespace Prisma {
     cancelReason?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    customerOtp?: string | null
+    providerOtp?: string | null
+    otpExpiresAt?: Date | string | null
+    otpVerifiedAt?: Date | string | null
     customer: UserCreateNestedOneWithoutRequestsAsCustomerInput
     review?: ReviewCreateNestedOneWithoutJobInput
   }
@@ -9234,6 +9410,10 @@ export namespace Prisma {
     cancelReason?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    customerOtp?: string | null
+    providerOtp?: string | null
+    otpExpiresAt?: Date | string | null
+    otpVerifiedAt?: Date | string | null
     review?: ReviewUncheckedCreateNestedOneWithoutJobInput
   }
 
@@ -9403,6 +9583,10 @@ export namespace Prisma {
     cancelReason?: StringNullableFilter<"ServiceRequest"> | string | null
     createdAt?: DateTimeFilter<"ServiceRequest"> | Date | string
     updatedAt?: DateTimeFilter<"ServiceRequest"> | Date | string
+    customerOtp?: StringNullableFilter<"ServiceRequest"> | string | null
+    providerOtp?: StringNullableFilter<"ServiceRequest"> | string | null
+    otpExpiresAt?: DateTimeNullableFilter<"ServiceRequest"> | Date | string | null
+    otpVerifiedAt?: DateTimeNullableFilter<"ServiceRequest"> | Date | string | null
   }
 
   export type ServiceRequestUpsertWithWhereUniqueWithoutProviderInput = {
@@ -9850,6 +10034,10 @@ export namespace Prisma {
     cancelReason?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    customerOtp?: string | null
+    providerOtp?: string | null
+    otpExpiresAt?: Date | string | null
+    otpVerifiedAt?: Date | string | null
     customer: UserCreateNestedOneWithoutRequestsAsCustomerInput
     provider?: UserCreateNestedOneWithoutRequestsAsProviderInput
   }
@@ -9869,6 +10057,10 @@ export namespace Prisma {
     cancelReason?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    customerOtp?: string | null
+    providerOtp?: string | null
+    otpExpiresAt?: Date | string | null
+    otpVerifiedAt?: Date | string | null
   }
 
   export type ServiceRequestCreateOrConnectWithoutReviewInput = {
@@ -9971,6 +10163,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: UserUpdateOneRequiredWithoutRequestsAsCustomerNestedInput
     provider?: UserUpdateOneWithoutRequestsAsProviderNestedInput
   }
@@ -9990,6 +10186,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UserUpsertWithoutReviewsGivenInput = {
@@ -10090,6 +10290,10 @@ export namespace Prisma {
     cancelReason?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    customerOtp?: string | null
+    providerOtp?: string | null
+    otpExpiresAt?: Date | string | null
+    otpVerifiedAt?: Date | string | null
   }
 
   export type ServiceRequestCreateManyProviderInput = {
@@ -10106,6 +10310,10 @@ export namespace Prisma {
     cancelReason?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
+    customerOtp?: string | null
+    providerOtp?: string | null
+    otpExpiresAt?: Date | string | null
+    otpVerifiedAt?: Date | string | null
   }
 
   export type ReviewCreateManyReviewerInput = {
@@ -10142,6 +10350,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     provider?: UserUpdateOneWithoutRequestsAsProviderNestedInput
     review?: ReviewUpdateOneWithoutJobNestedInput
   }
@@ -10160,6 +10372,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     review?: ReviewUncheckedUpdateOneWithoutJobNestedInput
   }
 
@@ -10177,6 +10393,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ServiceRequestUpdateWithoutProviderInput = {
@@ -10191,6 +10411,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     customer?: UserUpdateOneRequiredWithoutRequestsAsCustomerNestedInput
     review?: ReviewUpdateOneWithoutJobNestedInput
   }
@@ -10209,6 +10433,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     review?: ReviewUncheckedUpdateOneWithoutJobNestedInput
   }
 
@@ -10226,6 +10454,10 @@ export namespace Prisma {
     cancelReason?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    customerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    providerOtp?: NullableStringFieldUpdateOperationsInput | string | null
+    otpExpiresAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    otpVerifiedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type ReviewUpdateWithoutReviewerInput = {

@@ -96,8 +96,8 @@ async function loadProviders() {
   list.innerHTML = '<p style="color:var(--muted2);padding:1rem">Finding providers near you...</p>';
 
   // Use a default Lagos location if geolocation not available
-  const lat = 6.4281;
-  const lng = 3.4219;
+  const lat = 9.0579;
+  const lng = 7.4951;
 
   try {
     const res = await fetch(

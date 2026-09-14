@@ -167,7 +167,11 @@ exports.Prisma.ServiceRequestScalarFieldEnum = {
   amount: 'amount',
   cancelReason: 'cancelReason',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  customerOtp: 'customerOtp',
+  providerOtp: 'providerOtp',
+  otpExpiresAt: 'otpExpiresAt',
+  otpVerifiedAt: 'otpVerifiedAt'
 };
 
 exports.Prisma.ReviewScalarFieldEnum = {
@@ -210,7 +214,9 @@ exports.Prisma.CustomerProfileOrderByRelevanceFieldEnum = {
 exports.Prisma.ServiceRequestOrderByRelevanceFieldEnum = {
   description: 'description',
   address: 'address',
-  cancelReason: 'cancelReason'
+  cancelReason: 'cancelReason',
+  customerOtp: 'customerOtp',
+  providerOtp: 'providerOtp'
 };
 
 exports.Prisma.ReviewOrderByRelevanceFieldEnum = {

@@ -22,23 +22,24 @@
     </div>
   </div>
   <nav class="sb-nav">
-    <div class="sb-section-label">Main</div>
-    <a href="customer-dashboard.html" class="sb-link">
-      <div class="sb-link-inner">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        Dashboard
-      </div>
-    </a>
+  <div class="sb-section-label">Main</div>
+  <a href="#" class="sb-link" id="dashboard-link">
+    <div class="sb-link-inner">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Dashboard
+    </div>
+  </a>
+  <a href="booking-history.html" class="sb-link active" id="jobs-link">
+    <div class="sb-link-inner">
+      <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      My jobs
+    </div>
+  </a>
+  <div id="customer-nav-items">
     <a href="booking.html" class="sb-link">
       <div class="sb-link-inner">
         <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
         Book a service
-      </div>
-    </a>
-    <a href="booking-history.html" class="sb-link active">
-      <div class="sb-link-inner">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        My jobs
       </div>
     </a>
     <a href="#" class="sb-link">
@@ -47,20 +48,35 @@
         Messages
       </div>
     </a>
-    <div class="sb-section-label">Account</div>
-    <a href="profile.html" class="sb-link">
-      <div class="sb-link-inner">
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        Profile
-      </div>
+  </div>
+ <div id="provider-nav-items" style="display:none;padding:0;margin:0">
+    <a href="#" class="sb-link">
+        <div class="sb-link-inner">
+            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Messages
+        </div>
     </a>
-    <a href="settings.html" class="sb-link">
-      <div class="sb-link-inner">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
-        Settings
-      </div>
+    <a href="#" class="sb-link">
+        <div class="sb-link-inner">
+            <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Earnings
+        </div>
     </a>
-  </nav>
+</div>
+  <div class="sb-section-label">Account</div>
+  <a href="profile.html" class="sb-link">
+    <div class="sb-link-inner">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Profile
+    </div>
+  </a>
+  <a href="settings.html" class="sb-link">
+    <div class="sb-link-inner">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      Settings
+    </div>
+  </a>
+</nav>
   <div class="sb-bottom">
     <a href="login.html" class="sb-logout" onclick="localStorage.clear()">
       <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
@@ -70,10 +86,20 @@
 </aside>
 
 <div class="main">
-  <div class="topbar">
-    <div class="topbar-left"><h1>My <em>jobs</em></h1></div>
-    <div class="topbar-right"><a href="booking.html" class="btn-book">+ Book a service</a></div>
+ <div class="topbar">
+  <div class="topbar-left"><h1>My <em>jobs</em></h1></div>
+  <div class="topbar-right">
+    <div id="customer-topbar-action">
+      <a href="booking.html" class="btn-book">+ Book a service</a>
+    </div>
+    <div id="provider-topbar-action" style="display:none">
+      <div class="avail-toggle">
+        <span class="avail-label on" id="avail-label">Available</span>
+        <button class="toggle-switch" id="avail-toggle" onclick="toggleAvail()" aria-label="Toggle availability"></button>
+      </div>
+    </div>
   </div>
+</div>
 
   <div class="inner-page wide">
     <div class="page-header-row">
@@ -99,8 +125,16 @@
     </div>
   </div>
 </div>
+<!-- Job detail modal -->
+<div id="job-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;align-items:center;justify-content:center">
+    <div style="background:var(--bg2);border:1px solid var(--border);border-radius:16px;padding:2rem;width:90%;max-width:500px;max-height:80vh;overflow-y:auto;position:relative">
+        <button onclick="closeJobModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted2);cursor:pointer;font-size:1.2rem">✕</button>
+        <div id="job-modal-content"></div>
+    </div>
+</div>
 
 <script src="/client/js/config.js"></script>
+<script src="/client/js/sidebar.js"></script>
 <script src="/client/js/booking-history.js"></script>
 </body>
 </html>

@@ -10,19 +10,8 @@ if (!token || !user) window.location.href = 'login.html';
 
 document.addEventListener('DOMContentLoaded', async () => {
     if (!user) return;
-
-    // Populate sidebar
-    const sidebarName = document.getElementById('sidebar-name');
-    const sidebarRole = document.getElementById('sidebar-role');
-    const avatar      = document.getElementById('sidebar-avatar');
-
-    if (sidebarName) sidebarName.textContent = user.fullName;
-    if (sidebarRole) sidebarRole.textContent = user.role;
-    if (avatar) {
-        avatar.textContent = user.fullName.split(' ').map(n => n[0]).join('');
-    }
-
-    // Pre-fill form with existing data
+    
+      // Pre-fill form with existing data
     const nameParts = user.fullName.split(' ');
     const fname = document.getElementById('fname');
     const lname = document.getElementById('lname');

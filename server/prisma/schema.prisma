@@ -93,6 +93,10 @@ model ServiceRequest {
   customer       User         @relation("CustomerRequests", fields: [customerId], references: [id])
   provider       User?        @relation("ProviderRequests", fields: [providerId], references: [id])
   review        Review?
+  customerOtp     String?
+  providerOtp     String?
+  otpExpiresAt    DateTime?
+  otpVerifiedAt   DateTime?
 }
 model Review {
   id             Int      @id @default(autoincrement())

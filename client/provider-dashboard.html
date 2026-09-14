@@ -29,7 +29,7 @@
         Dashboard
       </div>
     </a>
-    <a href="#" class="sb-link">
+    <a href="booking-history.html" class="sb-link">
       <div class="sb-link-inner">
         <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
         My jobs
@@ -48,13 +48,13 @@
       </div>
     </a>
     <div class="sb-section-label">Account</div>
-    <a href="#" class="sb-link">
+    <a href="profile.html" class="sb-link">
       <div class="sb-link-inner">
         <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         Profile
       </div>
     </a>
-    <a href="#" class="sb-link">
+    <a href="settings.html" class="sb-link">
       <div class="sb-link-inner">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
         Settings
@@ -87,39 +87,81 @@
   </div>
 
   <div class="page">
+
+    <!-- PROVIDER STATS -->
     <div class="stats-row">
       <div class="stat-card">
         <div class="stat-card-label">Jobs completed</div>
-        <div class="stat-card-val" id="stat-jobs">0</div>
+        <div class="stat-card-val green" id="stat-jobs">0</div>
         <div class="stat-card-sub">All time</div>
       </div>
       <div class="stat-card">
-        <div class="stat-card-label">Rating score</div>
-        <div class="stat-card-val" id="stat-rating">0</div>
-        <div class="stat-card-sub">Average rating</div>
+        <div class="stat-card-label">Rating</div>
+        <div class="stat-card-val amber" id="stat-rating">0.0</div>
+        <div class="stat-card-sub">Average score</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Trade</div>
+        <div class="stat-card-val" id="stat-category" style="font-size:1rem;padding-top:0.4rem">—</div>
+        <div class="stat-card-sub">Your category</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-label">Status</div>
+        <div class="stat-card-val" id="stat-status" style="font-size:1rem;padding-top:0.4rem;color:var(--green)">Active</div>
+        <div class="stat-card-sub">Account status</div>
       </div>
     </div>
 
-    <!-- AVAILABLE JOBS -->
-    <div class="section-card" style="margin-bottom:1.5rem">
-      <div class="section-head">
-        <h2>Available job requests</h2>
-        <button onclick="loadAvailableJobs()" class="see-all">Refresh</button>
+    <!-- MATCH SCORE BANNER -->
+    <div class="section-card" style="margin-bottom:1.5rem;background:linear-gradient(135deg,var(--bg2),var(--bg3))">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+        <div>
+          <h2 style="margin-bottom:0.25rem">Your match score</h2>
+          <p style="color:var(--muted2);font-size:0.85rem">How the algorithm ranks you against other providers</p>
+        </div>
+        <div style="text-align:right">
+          <div style="font-family:'Instrument Serif',serif;font-size:2.5rem;color:var(--amber)" id="match-score">—</div>
+          <div style="font-size:0.75rem;color:var(--muted2)">out of 100</div>
+        </div>
       </div>
-      <div id="available-jobs">
-        <p style="color:var(--muted2);padding:1rem">Loading available jobs...</p>
+      <div class="score-bars" style="margin-top:1.25rem">
+        <div class="score-bar-row">
+          <div class="score-bar-label">Rating weight</div>
+          <div class="score-bar-track"><div class="score-bar-fill" id="bar-rating" style="width:0%"></div></div>
+          <div class="score-bar-val" id="bar-rating-val">0</div>
+        </div>
+        <div class="score-bar-row">
+          <div class="score-bar-label">Experience weight</div>
+          <div class="score-bar-track"><div class="score-bar-fill" id="bar-jobs" style="width:0%"></div></div>
+          <div class="score-bar-val" id="bar-jobs-val">0</div>
+        </div>
       </div>
     </div>
 
-    <!-- MY JOBS -->
-    <div class="section-card">
-      <div class="section-head">
-        <h2>My recent jobs</h2>
+    <div class="two-col">
+      <!-- AVAILABLE JOBS -->
+      <div class="section-card">
+        <div class="section-head">
+          <h2>Available job requests</h2>
+          <button onclick="loadAvailableJobs()" class="see-all">Refresh</button>
+        </div>
+        <div id="available-jobs">
+          <p style="color:var(--muted2);padding:1rem">Loading available jobs...</p>
+        </div>
       </div>
-      <div id="my-jobs">
-        <p style="color:var(--muted2);padding:1rem">Loading your jobs...</p>
+
+      <!-- MY RECENT JOBS -->
+      <div class="section-card">
+        <div class="section-head">
+          <h2>My recent jobs</h2>
+          <a href="booking-history.html" class="see-all">See all →</a>
+        </div>
+        <div id="my-jobs">
+          <p style="color:var(--muted2);padding:1rem">Loading your jobs...</p>
+        </div>
       </div>
     </div>
+
   </div>
 </div>
 

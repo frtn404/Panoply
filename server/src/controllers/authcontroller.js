@@ -2,16 +2,49 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const prisma = require("../config/prisma");
 
+// ── Input validation ───────────────────────────────────────
+const validators = {
+    email: (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val),
+    phone: (val) => /^(\+234|0)[789][01]\d{8}$/.test(val),
+    password: (val) => /^(?=.*[A-Z])(?=.*\d).{8,}$/.test(val),
+    fullName: (val) => /^[a-zA-Z\s'-]{2,50}$/.test(val)
+};
+
 const register = async (req, res) => {
     try {
         const { fullName, email, phone, password, role } = req.body;
 
-        // Check required fields
-        if (!fullName || !email || !password) {
-            return res.status(400).json({
-                message: "Full name, email and password are required."
-            });
-        }
+     // Check required fields
+if (!fullName || !email || !password) {
+    return res.status(400).json({
+        message: "Full name, email and password are required."
+    });
+}
+
+// Validate formats
+if (!validators.fullName(fullName)) {
+    return res.status(400).json({
+        message: "Full name must be 2-50 characters and contain only letters."
+    });
+}
+
+if (!validators.email(email)) {
+    return res.status(400).json({
+        message: "Please enter a valid email address."
+    });
+}
+
+if (!validators.password(password)) {
+    return res.status(400).json({
+        message: "Password must be at least 8 characters with one uppercase letter and one number."
+    });
+}
+
+if (phone && !validators.phone(phone)) {
+    return res.status(400).json({
+        message: "Please enter a valid Nigerian phone number (e.g. 08012345678)."
+    });
+}
 
         // Check if email already exists
         const existingUser = await prisma.user.findUnique({

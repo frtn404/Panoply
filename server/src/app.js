@@ -8,6 +8,7 @@ const matchingRoutes = require("./routes/matchingRoutes");
 const adminMLRoutes = require("./routes/adminMLRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const userRoutes = require("./routes/userRoutes");
+const otpRoutes = require("./routes/otpRoutes");
 
 const app = express();
 
@@ -21,6 +22,7 @@ app.use("/api/matching", matchingRoutes);
 app.use("/api/admin", adminMLRoutes);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/otp", otpRoutes);
 
 app.get("/", (req, res) => {
     res.json({

@@ -32,24 +32,43 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // Load availability status from profile
     try {
-        const res  = await fetch(`${API_URL}/profiles/provider/${user.id}`, {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
-        const data = await res.json();
+    const res  = await fetch(`${API_URL}/profiles/provider/${user.id}`, {
+        headers: { 'Authorization': `Bearer ${token}` }
+    });
+    const data = await res.json();
 
-        if (data.profile) {
-            isAvailable = data.profile.isAvailable;
-            updateAvailUI();
+    if (data.profile) {
+        isAvailable = data.profile.isAvailable;
+        updateAvailUI();
 
-            // Update stats
-            const ratingEl = document.getElementById('stat-rating');
-            const jobsEl   = document.getElementById('stat-jobs');
-            if (ratingEl) ratingEl.textContent = data.profile.averageRating || '0';
-            if (jobsEl)   jobsEl.textContent   = data.profile.completedJobsCount || '0';
-        }
-    } catch (err) {
-        console.error('Profile load error:', err);
+        const ratingEl   = document.getElementById('stat-rating');
+        const jobsEl     = document.getElementById('stat-jobs');
+        const categoryEl = document.getElementById('stat-category');
+        const statusEl   = document.getElementById('stat-status');
+        const matchEl    = document.getElementById('match-score');
+        const barRating  = document.getElementById('bar-rating');
+        const barJobs    = document.getElementById('bar-jobs');
+        const barRatingV = document.getElementById('bar-rating-val');
+        const barJobsV   = document.getElementById('bar-jobs-val');
+
+        const rating    = data.profile.averageRating || 0;
+        const jobs      = data.profile.completedJobsCount || 0;
+        const matchScore = Math.round((rating * 0.5 + jobs * 0.3) * 10);
+
+        if (ratingEl)   ratingEl.textContent   = rating;
+        if (jobsEl)     jobsEl.textContent      = jobs;
+        if (categoryEl) categoryEl.textContent  = data.profile.category || '—';
+        if (statusEl)   statusEl.textContent    = user.status || 'active';
+        if (matchEl)    matchEl.textContent     = matchScore;
+
+        if (barRating) barRating.style.width = `${(rating / 5) * 100}%`;
+        if (barJobs)   barJobs.style.width   = `${Math.min(jobs, 100)}%`;
+        if (barRatingV) barRatingV.textContent = rating;
+        if (barJobsV)   barJobsV.textContent   = jobs;
     }
+} catch (err) {
+    console.error('Profile load error:', err);
+}
 
     // Load available job requests
     loadAvailableJobs();

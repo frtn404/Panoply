@@ -98,9 +98,13 @@ model ServiceRequest {
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 
-  customer User    @relation("CustomerRequests", fields: [customerId], references: [id])
-  provider User?   @relation("ProviderRequests", fields: [providerId], references: [id])
-  review   Review?
+  customer      User      @relation("CustomerRequests", fields: [customerId], references: [id])
+  provider      User?     @relation("ProviderRequests", fields: [providerId], references: [id])
+  review        Review?
+  customerOtp   String?
+  providerOtp   String?
+  otpExpiresAt  DateTime?
+  otpVerifiedAt DateTime?
 }
 
 model Review {
