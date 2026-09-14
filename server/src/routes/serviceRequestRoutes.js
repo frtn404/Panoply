@@ -5,7 +5,9 @@ const {
     getMyServiceRequests,
     updateServiceRequestStatus,
     getAvailableRequests,
-    respondToRequest
+    respondToRequest,
+    submitQuote,
+    respondToQuote
 } = require("../controllers/serviceRequestController");
 const { protect } = require("../middleware/authMiddleware");
 
@@ -17,5 +19,7 @@ router.get("/available", protect, getAvailableRequests);
 router.get("/:id", protect, getServiceRequest);
 router.patch("/:id/status", protect, updateServiceRequestStatus);
 router.patch("/:id/respond", protect, respondToRequest);
+router.patch("/:id/quote",          protect, submitQuote);
+router.patch("/:id/quote-response", protect, respondToQuote);
 
 module.exports = router;

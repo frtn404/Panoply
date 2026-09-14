@@ -1,8 +1,8 @@
 const jwt = require("jsonwebtoken");
+const prisma = require("../config/prisma");
 
-const protect = (req, res, next) => {
+const protect = async (req, res, next) => {
     try {
-        // Get the token from the Authorization header
         const authHeader = req.headers.authorization;
 
         if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -11,16 +11,21 @@ const protect = (req, res, next) => {
             });
         }
 
-        // Extract the token (remove "Bearer " prefix)
-        const token = authHeader.split(" ")[1];
-
-        // Verify the token
+        const token   = authHeader.split(" ")[1];
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        // Attach the decoded user data to the request
-        req.user = decoded;
+        // Check if user is blacklisted
+        const blacklisted = await prisma.blacklist.findUnique({
+            where: { userId: decoded.id }
+        });
 
-        // Pass control to the next function (the route handler)
+        if (blacklisted) {
+            return res.status(403).json({
+                message: `Your account has been suspended. Reason: ${blacklisted.reason}. Please contact support.`
+            });
+        }
+
+        req.user = decoded;
         next();
 
     } catch (error) {

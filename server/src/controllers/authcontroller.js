@@ -129,6 +129,16 @@ const login = async (req, res) => {
                 message: "Invalid email or password."
             });
         }
+        // Check if user is blacklisted
+const blacklisted = await prisma.blacklist.findUnique({
+    where: { userId: user.id }
+});
+
+if (blacklisted) {
+    return res.status(403).json({
+        message: `Your account has been suspended. Reason: ${blacklisted.reason}. Please contact support@panoply.ng`
+    });
+}
 
         // Compare submitted password against stored hash
         const passwordMatch = await bcrypt.compare(password, user.password);

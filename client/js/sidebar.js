@@ -44,5 +44,10 @@ function initSidebar() {
         if (providerTopbar) providerTopbar.style.display = 'flex';
     }
 }
+function handleLogout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = '/client/login.html';
+}
 
 initSidebar();

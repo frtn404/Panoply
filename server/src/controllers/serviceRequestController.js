@@ -328,12 +328,147 @@ const respondToRequest = async (req, res) => {
         });
     }
 };
+const submitQuote = async (req, res) => {
+    try {
+        if (req.user.role !== "provider") {
+            return res.status(403).json({
+                message: "Only providers can submit quotes."
+            });
+        }
 
+        const { quote, quoteMessage } = req.body;
+        const requestId = parseInt(req.params.id);
+
+        if (!quote || quote < 100) {
+            return res.status(400).json({
+                message: "Please enter a valid quote amount (minimum ₦100)."
+            });
+        }
+
+        const serviceRequest = await prisma.serviceRequest.findUnique({
+            where: { id: requestId }
+        });
+
+        if (!serviceRequest) {
+            return res.status(404).json({ message: "Service request not found." });
+        }
+
+        if (serviceRequest.status !== "pending" && serviceRequest.status !== "assigning") {
+            return res.status(400).json({
+                message: "Quote can only be submitted for pending jobs."
+            });
+        }
+
+        const updated = await prisma.serviceRequest.update({
+            where: { id: requestId },
+            data: {
+                providerId:   req.user.id,
+                quote:        parseFloat(quote),
+                quoteMessage: quoteMessage || null,
+                status:       "quoted",
+                quoteAt:      new Date()
+            },
+            include: {
+                customer: { select: { fullName: true, email: true, phone: true } }
+            }
+        });
+
+        res.status(200).json({
+            message: "Quote submitted successfully. Waiting for customer approval.",
+            serviceRequest: updated
+        });
+
+    } catch (error) {
+        console.error("Submit quote error:", error.message);
+        res.status(500).json({ message: "Something went wrong." });
+    }
+};
+
+const respondToQuote = async (req, res) => {
+    try {
+        if (req.user.role !== "customer") {
+            return res.status(403).json({
+                message: "Only customers can respond to quotes."
+            });
+        }
+
+        const { action } = req.body; // "accept" or "reject"
+        const requestId  = parseInt(req.params.id);
+
+        if (!action || !["accept", "reject"].includes(action)) {
+            return res.status(400).json({
+                message: "Action must be 'accept' or 'reject'."
+            });
+        }
+
+        const serviceRequest = await prisma.serviceRequest.findUnique({
+            where: { id: requestId }
+        });
+
+        if (!serviceRequest) {
+            return res.status(404).json({ message: "Service request not found." });
+        }
+
+        if (serviceRequest.customerId !== req.user.id) {
+            return res.status(403).json({
+                message: "You can only respond to your own quotes."
+            });
+        }
+
+        if (serviceRequest.status !== "quoted") {
+            return res.status(400).json({
+                message: "This job does not have a pending quote."
+            });
+        }
+
+        if (action === "accept") {
+            const updated = await prisma.serviceRequest.update({
+                where: { id: requestId },
+                data: {
+                    status: "accepted",
+                    amount: serviceRequest.quote
+                },
+                include: {
+                    provider: { select: { fullName: true, email: true, phone: true } }
+                }
+            });
+
+            return res.status(200).json({
+                message: "Quote accepted. Provider will be on their way.",
+                serviceRequest: updated
+            });
+        }
+
+        if (action === "reject") {
+            const updated = await prisma.serviceRequest.update({
+                where: { id: requestId },
+                data: {
+                    status:       "pending",
+                    providerId:   null,
+                    quote:        null,
+                    quoteMessage: null,
+                    quoteAt:      null
+                }
+            });
+
+            return res.status(200).json({
+                message: "Quote rejected. Job is back in the pool for other providers.",
+                serviceRequest: updated
+            });
+        }
+
+    } catch (error) {
+        console.error("Respond to quote error:", error.message);
+        res.status(500).json({ message: "Something went wrong." });
+    }
+};
 module.exports = {
     createServiceRequest,
     getServiceRequest,
     getMyServiceRequests,
-    updateServiceRequestStatus, 
+    updateServiceRequestStatus,
+    getAvailableRequests,
     respondToRequest,
-    getAvailableRequests
+    submitQuote,
+    respondToQuote
 };

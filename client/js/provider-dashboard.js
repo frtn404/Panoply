@@ -92,20 +92,30 @@ async function loadAvailableJobs() {
         }
 
         container.innerHTML = data.requests.map(r => `
-            <div class="job-item">
-                <div class="job-icon default">
-                    <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                </div>
-                <div class="job-info">
-                    <h4>${r.category} — ${r.description.substring(0, 50)}...</h4>
-                    <p>${r.customer.fullName} · ${r.address}</p>
-                </div>
-                <div style="display:flex;gap:0.5rem">
-                    <button class="btn-accept" onclick="respondToJob(${r.id}, 'accept')">Accept</button>
-                    <button class="btn-decline" onclick="respondToJob(${r.id}, 'reject')">Decline</button>
-                </div>
+    <div class="job-item">
+        <div class="job-icon default">
+            <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <div class="job-info">
+            <h4>${r.category} — ${r.description.substring(0, 50)}...</h4>
+            <p>${r.customer.fullName} · ${r.address}</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:0.5rem;min-width:200px">
+            <div style="display:flex;gap:0.5rem">
+                <input type="number" id="quote-amount-${r.id}" 
+                    placeholder="Quote (₦)"
+                    style="flex:1;padding:0.4rem 0.75rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--cream);font-size:0.82rem"/>
             </div>
-        `).join('');
+            <input type="text" id="quote-msg-${r.id}"
+                placeholder="Optional message to customer"
+                style="padding:0.4rem 0.75rem;background:var(--bg);border:1px solid var(--border);border-radius:6px;color:var(--cream);font-size:0.82rem"/>
+            <div style="display:flex;gap:0.5rem">
+                <button class="btn-accept" onclick="submitQuote(${r.id})">Send quote</button>
+                <button class="btn-decline" onclick="respondToJob(${r.id}, 'reject')">Decline</button>
+            </div>
+        </div>
+    </div>
+`).join('');
 
     } catch (err) {
         console.error('Jobs load error:', err);
@@ -205,5 +215,40 @@ async function toggleAvail() {
         });
     } catch (err) {
         console.error('Availability update error:', err);
+    }
+}
+async function submitQuote(jobId) {
+    const amount  = document.getElementById(`quote-amount-${jobId}`)?.value;
+    const message = document.getElementById(`quote-msg-${jobId}`)?.value.trim();
+
+    if (!amount || parseFloat(amount) < 100) {
+        alert('Please enter a valid quote amount (minimum ₦100).');
+        return;
+    }
+
+    try {
+        const res = await fetch(`${API_URL}/requests/${jobId}/quote`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type':  'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                quote:        parseFloat(amount),
+                quoteMessage: message
+            })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.message || 'Failed to submit quote.');
+            return;
+        }
+
+        alert(`Quote of ₦${parseFloat(amount).toLocaleString()} sent to customer. Waiting for approval.`);
+        loadAvailableJobs();
+
+    } catch (err) {
+        console.error('Submit quote error:', err);
     }
 }

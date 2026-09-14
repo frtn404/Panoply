@@ -171,7 +171,10 @@ exports.Prisma.ServiceRequestScalarFieldEnum = {
   customerOtp: 'customerOtp',
   providerOtp: 'providerOtp',
   otpExpiresAt: 'otpExpiresAt',
-  otpVerifiedAt: 'otpVerifiedAt'
+  otpVerifiedAt: 'otpVerifiedAt',
+  quote: 'quote',
+  quoteMessage: 'quoteMessage',
+  quoteAt: 'quoteAt'
 };
 
 exports.Prisma.ReviewScalarFieldEnum = {
@@ -183,6 +186,26 @@ exports.Prisma.ReviewScalarFieldEnum = {
   comment: 'comment',
   sentimentScore: 'sentimentScore',
   isFlagged: 'isFlagged',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PaymentScalarFieldEnum = {
+  id: 'id',
+  jobId: 'jobId',
+  amount: 'amount',
+  reference: 'reference',
+  status: 'status',
+  paidBy: 'paidBy',
+  paidTo: 'paidTo',
+  releasedAt: 'releasedAt',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.BlacklistScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  reason: 'reason',
+  blacklistedBy: 'blacklistedBy',
   createdAt: 'createdAt'
 };
 
@@ -216,11 +239,20 @@ exports.Prisma.ServiceRequestOrderByRelevanceFieldEnum = {
   address: 'address',
   cancelReason: 'cancelReason',
   customerOtp: 'customerOtp',
-  providerOtp: 'providerOtp'
+  providerOtp: 'providerOtp',
+  quoteMessage: 'quoteMessage'
 };
 
 exports.Prisma.ReviewOrderByRelevanceFieldEnum = {
   comment: 'comment'
+};
+
+exports.Prisma.PaymentOrderByRelevanceFieldEnum = {
+  reference: 'reference'
+};
+
+exports.Prisma.BlacklistOrderByRelevanceFieldEnum = {
+  reason: 'reason'
 };
 exports.Role = exports.$Enums.Role = {
   customer: 'customer',
@@ -248,10 +280,19 @@ exports.TradeCategory = exports.$Enums.TradeCategory = {
 exports.JobStatus = exports.$Enums.JobStatus = {
   pending: 'pending',
   assigning: 'assigning',
+  quoted: 'quoted',
   accepted: 'accepted',
   in_progress: 'in_progress',
   completed: 'completed',
   cancelled: 'cancelled',
+  failed: 'failed'
+};
+
+exports.PaymentStatus = exports.$Enums.PaymentStatus = {
+  pending: 'pending',
+  held: 'held',
+  released: 'released',
+  refunded: 'refunded',
   failed: 'failed'
 };
 
@@ -260,7 +301,9 @@ exports.Prisma.ModelName = {
   ProviderProfile: 'ProviderProfile',
   CustomerProfile: 'CustomerProfile',
   ServiceRequest: 'ServiceRequest',
-  Review: 'Review'
+  Review: 'Review',
+  Payment: 'Payment',
+  Blacklist: 'Blacklist'
 };
 
 /**

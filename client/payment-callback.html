@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Payment — Panoply</title>
+<link rel="stylesheet" href="/client/css/styles.css"/>
+</head>
+<body style="display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--bg)">
+<div style="text-align:center;padding:2rem">
+    <div id="status-icon" style="font-size:3rem;margin-bottom:1rem">⏳</div>
+    <h2 id="status-title" style="color:var(--cream);margin-bottom:0.5rem">Verifying payment...</h2>
+    <p id="status-msg" style="color:var(--muted2)">Please wait</p>
+</div>
+
+<script src="/client/js/config.js"></script>
+<script>
+async function verifyPayment() {
+    // Restore token from backup if localStorage was cleared
+    if (!localStorage.getItem('token') && sessionStorage.getItem('token_backup')) {
+        localStorage.setItem('token', sessionStorage.getItem('token_backup'));
+        localStorage.setItem('user', sessionStorage.getItem('user_backup'));
+        sessionStorage.removeItem('token_backup');
+        sessionStorage.removeItem('user_backup');
+    }
+    const token = localStorage.getItem('token');
+    if (!token) {
+        window.location.href = '/client/login.html';
+        return;
+    }
+
+    // Get reference from URL
+    const params    = new URLSearchParams(window.location.search);
+    const reference = params.get('reference') || params.get('trxref');
+
+    if (!reference) {
+        document.getElementById('status-title').textContent = 'No payment reference found.';
+        document.getElementById('status-icon').textContent  = '❌';
+        setTimeout(() => window.location.href = '/client/booking-history.html', 2000);
+        return;
+    }
+
+    try {
+        const res  = await fetch(`${API_URL}/payments/verify/${reference}`, {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+
+        if (res.ok) {
+            document.getElementById('status-icon').textContent  = '✅';
+            document.getElementById('status-title').textContent = 'Payment successful!';
+            document.getElementById('status-msg').textContent   = `₦${data.amountNaira.toLocaleString()} held in escrow. Will be released to provider on job completion.`;
+        } else {
+            document.getElementById('status-icon').textContent  = '❌';
+            document.getElementById('status-title').textContent = 'Payment verification failed.';
+            document.getElementById('status-msg').textContent   = data.message;
+        }
+
+    } catch (err) {
+        document.getElementById('status-icon').textContent  = '❌';
+        document.getElementById('status-title').textContent = 'Something went wrong.';
+    }
+
+    setTimeout(() => window.location.href = '/client/booking-history.html', 3000);
+}
+
+verifyPayment();
+</script>
+</body>
+</html>

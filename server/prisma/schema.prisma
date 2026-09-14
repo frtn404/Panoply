@@ -25,6 +25,7 @@ enum TradeCategory {
 enum JobStatus {
   pending
   assigning
+  quoted
   accepted
   in_progress
   completed
@@ -36,6 +37,14 @@ enum UserStatus {
   pending
   suspended
 }
+enum PaymentStatus {
+  pending
+  held
+  released
+  refunded
+  failed
+}
+
 model User {
   id        Int      @id @default(autoincrement())
   fullName  String
@@ -51,6 +60,10 @@ model User {
   ReviewsGiven       Review[]       @relation("ReviewsGiven")
   ReviewsReceived      Review[]       @relation("ReviewsReceived")
   status    UserStatus @default(active)
+  paymentsMade     Payment[] @relation("PaymentsByCustomer")
+  paymentsReceived Payment[] @relation("PaymentsToProvider")
+  blacklistEntry    Blacklist? @relation("BlacklistedUser")
+  blacklistsCreated Blacklist[] @relation("BlacklistedByAdmin")
 }
 model ProviderProfile {
   id                 Int           @id @default(autoincrement())
@@ -97,6 +110,10 @@ model ServiceRequest {
   providerOtp     String?
   otpExpiresAt    DateTime?
   otpVerifiedAt   DateTime?
+  payments Payment[]
+  quote          Float?
+  quoteMessage   String?
+  quoteAt        DateTime?
 }
 model Review {
   id             Int      @id @default(autoincrement())
@@ -112,4 +129,29 @@ model Review {
   job      ServiceRequest @relation(fields: [jobId], references: [id])
   reviewer User           @relation("ReviewsGiven", fields: [reviewerId], references: [id])
   provider User           @relation("ReviewsReceived", fields: [providerId], references: [id])
+}
+model Payment {
+  id          Int           @id @default(autoincrement())
+  jobId       Int
+  amount      Float
+  reference   String        @unique
+  status      PaymentStatus @default(pending)
+  paidBy      Int
+  paidTo      Int?
+  releasedAt  DateTime?
+  createdAt   DateTime      @default(now())
+
+  job         ServiceRequest @relation(fields: [jobId], references: [id])
+  customer    User           @relation("PaymentsByCustomer", fields: [paidBy], references: [id])
+  provider    User?          @relation("PaymentsToProvider", fields: [paidTo], references: [id])
+}
+model Blacklist {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  reason    String
+  blacklistedBy Int
+  createdAt DateTime @default(now())
+
+  user          User @relation("BlacklistedUser", fields: [userId], references: [id])
+  blacklistedByUser User @relation("BlacklistedByAdmin", fields: [blacklistedBy], references: [id])
 }

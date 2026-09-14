@@ -176,6 +176,42 @@ async function openJobModal(jobId) {
     </div>
 </div>
 ` : ''}
+${(job.status === 'accepted' || job.status === 'in_progress') ? `
+<div style="margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid var(--border)">
+    <h4 style="margin-bottom:0.75rem">Payment</h4>
+    <div id="payment-section-${job.id}">
+        <p style="color:var(--muted2);font-size:0.85rem;margin-bottom:1rem">
+            Pay securely via Paystack. Funds are held in escrow until job is completed.
+        </p>
+        <div style="display:flex;gap:0.75rem;align-items:center">
+            <input type="number" id="payment-amount-${job.id}" 
+                placeholder="Enter amount (₦)"
+                style="flex:1;padding:0.6rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--cream)"/>
+            <button class="btn-save" onclick="initiatePayment(${job.id})">Pay with Paystack</button>
+        </div>
+    </div>
+</div>
+` : ''}
+${job.status === 'quoted' && user.role === 'customer' ? `
+<div style="margin-top:1.5rem;padding:1.25rem;background:var(--amber-dim);border:1px solid rgba(212,168,73,0.2);border-radius:12px">
+    <h4 style="color:var(--amber);margin-bottom:0.5rem">Quote received</h4>
+    <div style="font-size:1.8rem;font-family:'Instrument Serif',serif;color:var(--amber);margin-bottom:0.5rem">
+        ₦${job.quote?.toLocaleString() || '—'}
+    </div>
+    ${job.quoteMessage ? `<p style="color:var(--muted2);font-size:0.85rem;margin-bottom:1rem">"${job.quoteMessage}"</p>` : ''}
+    <p style="color:var(--muted2);font-size:0.82rem;margin-bottom:1rem">
+        Accept to confirm the provider. Reject to find another provider.
+    </p>
+    <div style="display:flex;gap:0.75rem">
+        <button class="btn-save" onclick="respondToQuote(${job.id}, 'accept')">
+            Accept ₦${job.quote?.toLocaleString()}
+        </button>
+        <button class="btn-cancel" onclick="respondToQuote(${job.id}, 'reject')" style="padding:0.6rem 1.25rem;border-radius:8px;border:1px solid var(--border);background:none;color:var(--muted2);cursor:pointer">
+            Reject quote
+        </button>
+    </div>
+</div>
+` : ''}
 
         ${job.status === 'in_progress' ? `
         <div style="padding:1rem;background:var(--green-dim);border-radius:8px;margin-top:1rem">
@@ -280,3 +316,68 @@ async function toggleAvail() {
         console.error('Availability update error:', err);
     }
 } 
+async function initiatePayment(jobId) {
+    const amountInput = document.getElementById(`payment-amount-${jobId}`);
+    const amount      = parseFloat(amountInput.value);
+
+    if (!amount || amount < 100) {
+        alert('Please enter a valid amount (minimum ₦100).');
+        return;
+    }
+
+    try {
+        const res  = await fetch(`${API_URL}/payments/initialize`, {
+            method: 'POST',
+            headers: {
+                'Content-Type':  'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ jobId: String(jobId), amount })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.message || 'Payment initialization failed.');
+            return;
+        }
+        // Backup token to sessionStorage before Paystack redirect
+            sessionStorage.setItem('token_backup', token);
+            sessionStorage.setItem('user_backup', localStorage.getItem('user'));
+
+        // Redirect to Paystack checkout
+        window.location.href = data.authorization_url;
+
+    } catch (err) {
+        alert('Cannot connect to server.');
+        console.error('Payment error:', err);
+    }
+}
+async function respondToQuote(jobId, action) {
+    try {
+        const res = await fetch(`${API_URL}/requests/${jobId}/quote-response`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type':  'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ action })
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.message || 'Failed to respond to quote.');
+            return;
+        }
+
+        alert(action === 'accept'
+            ? `Quote accepted! Provider will be on their way. Amount: ₦${data.serviceRequest.amount?.toLocaleString()}`
+            : 'Quote rejected. Job is back in the pool.'
+        );
+
+        closeJobModal();
+        await loadJobs();
+
+    } catch (err) {
+        console.error('Quote response error:', err);
+    }
+}
