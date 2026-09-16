@@ -84,22 +84,28 @@
     </a>
   </div>
 </aside>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
 <div class="main">
- <div class="topbar">
-  <div class="topbar-left"><h1>My <em>jobs</em></h1></div>
-  <div class="topbar-right">
-    <div id="customer-topbar-action">
-      <a href="booking.html" class="btn-book">+ Book a service</a>
-    </div>
-    <div id="provider-topbar-action" style="display:none">
-      <div class="avail-toggle">
-        <span class="avail-label on" id="avail-label">Available</span>
-        <button class="toggle-switch" id="avail-toggle" onclick="toggleAvail()" aria-label="Toggle availability"></button>
+  <div class="topbar">
+    <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="topbar-left"><h1>My <em>jobs</em></h1></div>
+    <div class="topbar-right">
+      <div id="customer-topbar-action">
+        <a href="booking.html" class="btn-book">+ Book a service</a>
+      </div>
+      <div id="provider-topbar-action" style="display:none">
+        <div class="avail-toggle">
+          <span class="avail-label on" id="avail-label">Available</span>
+          <button class="toggle-switch" id="avail-toggle" onclick="toggleAvail()" aria-label="Toggle availability"></button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
   <div class="inner-page wide">
     <div class="page-header-row">

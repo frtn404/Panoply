@@ -11,15 +11,8 @@
 <link rel="stylesheet" href="/client/css/styles.css"/>
 </head>
 <body class="dash-body">
-<!-- <style>
-    .sidebar { overflow: hidden; }
-    .sb-nav a { white-space: nowrap; overflow: hidden; }
-</style> -->
-<!-- <style> 
-    .main { margin-left: 240px !important; }
-    .sb-nav { display: flex !important; flex-direction: column !important; }
-    .sb-link { display: flex !important; width: 100% !important; }
-</style> -->
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
 
 <!-- SIDEBAR -->
 <aside class="sidebar">
@@ -79,10 +72,17 @@
 </aside>
 
 <!-- MAIN -->
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
 <div class="main">
   <div class="topbar">
+    <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <div class="topbar-left">
-      <h1>Good afternoon, <em id = "dashboard-greeting">Emeka.</em></h1>
+      <h1>Good afternoon, <em id="dashboard-greeting">there.</em></h1>
     </div>
     <div class="topbar-right">
       <button class="notif-btn" aria-label="Notifications">

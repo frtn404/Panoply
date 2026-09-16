@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/client/css/styles.css"/>
 </head>
 <body class="dash-body">
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
 <aside class="sidebar">
   <div class="sb-logo"><a href="index.html">pan<em>oply</em></a></div>
@@ -69,20 +70,24 @@
   </div>
 </aside>
 
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
 <div class="main">
   <div class="topbar">
+    <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <div class="topbar-left">
       <h1>Good afternoon, <em id="dashboard-greeting">there.</em></h1>
     </div>
     <div class="topbar-right">
-      <div class="avail-toggle">
-        <span class="avail-label on" id="avail-label">Available</span>
-        <button class="toggle-switch" id="avail-toggle" onclick="toggleAvail()" aria-label="Toggle availability"></button>
-      </div>
       <button class="notif-btn" aria-label="Notifications">
         <svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
         <span class="notif-dot"></span>
       </button>
+      <a href="booking.html" class="btn-book">+ Book a service</a>
     </div>
   </div>
 

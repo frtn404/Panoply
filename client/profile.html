@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="/client/css/styles.css"/>
 </head>
 <body class="dash-body">
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
 
 <aside class="sidebar">
   <div class="sb-logo"><a href="index.html">pan<em>oply</em></a></div>
@@ -69,8 +70,15 @@
   </div>
 </aside>
 
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
 <div class="main">
   <div class="topbar">
+    <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <div class="topbar-left"><h1>My <em>profile</em></h1></div>
     <div class="topbar-right">
       <a href="edit-profile.html" class="btn-book">Edit profile</a>

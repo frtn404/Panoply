@@ -70,8 +70,15 @@
   </div>
 </aside>
 
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
 <div class="main">
   <div class="topbar">
+    <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
     <h1>Admin <em>control panel</em></h1>
     <div class="topbar-right">
       <div class="search-bar">
@@ -80,62 +87,6 @@
       </div>
     </div>
   </div>
-
-  <div class="page">
-    <!-- STATS -->
-    <div class="stats-row five">
-      <div class="stat-card">
-        <div class="stat-card-label">Total users</div>
-        <div class="stat-card-val" id="stat-users">—</div>
-        <div class="stat-card-sub">All accounts</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Active providers</div>
-        <div class="stat-card-val" id="stat-providers">—</div>
-        <div class="stat-card-sub">Verified</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Total jobs</div>
-        <div class="stat-card-val" id="stat-jobs">—</div>
-        <div class="stat-card-sub">All time</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Pending approval</div>
-        <div class="stat-card-val amber" id="stat-pending">—</div>
-        <div class="stat-card-sub">Providers</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-card-label">Open disputes</div>
-        <div class="stat-card-val red" id="stat-disputes">—</div>
-        <div class="stat-card-sub">Needs attention</div>
-      </div>
-    </div>
-
-    <div class="two-col">
-      <!-- PROVIDER MODERATION -->
-      <div class="section-card">
-        <div class="section-head">
-          <h2>Provider moderation</h2>
-          <button onclick="loadPendingProviders()" class="see-all">Refresh</button>
-        </div>
-        <div id="pending-providers">
-          <p style="color:var(--muted2);padding:1rem">Loading...</p>
-        </div>
-      </div>
-
-      <!-- DEMAND FORECAST -->
-      <div class="section-card">
-        <div class="section-head">
-          <h2>Demand forecast</h2>
-          <button onclick="loadDemandForecast()" class="see-all">Refresh</button>
-        </div>
-        <div id="demand-forecast" style="padding:1rem">
-          <p style="color:var(--muted2)">Loading forecast...</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="toast" id="toast">
   <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>

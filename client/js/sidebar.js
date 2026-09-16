@@ -49,5 +49,13 @@ function handleLogout() {
     localStorage.removeItem('user');
     window.location.href = '/client/login.html';
 }
+function toggleSidebar() {
+    const sidebar  = document.querySelector('.sidebar');
+    const overlay  = document.getElementById('sidebar-overlay');
+    const hamburger = document.getElementById('hamburger');
+
+    if (sidebar) sidebar.classList.toggle('open');
+    if (overlay) overlay.classList.toggle('active');
+}
 
 initSidebar();
