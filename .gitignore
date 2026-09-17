@@ -1,0 +1,24 @@
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Node
+node_modules/
+npm-debug.log
+
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Prisma generated client
+server/src/generated/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
