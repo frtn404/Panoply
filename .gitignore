@@ -14,7 +14,7 @@ __pycache__/
 *.pyo
 
 # Prisma generated client
-server/src/generated/
+# server/src/generated/
 
 # OS
 .DS_Store
