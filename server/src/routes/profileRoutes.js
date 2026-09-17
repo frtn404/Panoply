@@ -5,7 +5,7 @@ const {
     updateProviderProfile,
     updateCustomerProfile,
     getCustomerProfile
-} = require("../controllers/profilecontroller");
+} = require("../controllers/profileController");
 const { protect } = require("../middleware/authMiddleware");
 
 const router = express.Router();
