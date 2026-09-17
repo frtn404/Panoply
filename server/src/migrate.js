@@ -1,15 +1,17 @@
-const { execSync } = require('child_process');
-const path = require('path');
+const { PrismaClient } = require('../generated/client');
 
-try {
-    console.log('Running database migrations...');
-    execSync('npx prisma db push --accept-data-loss', {
-        stdio: 'inherit',
-        cwd: path.join(__dirname, '..'),
-        env: { ...process.env }
-    });
-    console.log('Database migrations complete.');
-} catch (error) {
-    console.error('Migration failed:', error.message);
-    process.exit(1);
+async function migrate() {
+    console.log('Connecting to database...');
+    const prisma = new PrismaClient();
+    
+    try {
+        await prisma.$connect();
+        console.log('Database connected successfully.');
+        await prisma.$disconnect();
+    } catch (error) {
+        console.error('Database connection failed:', error.message);
+        process.exit(1);
+    }
 }
+
+migrate();
